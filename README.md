@@ -353,31 +353,32 @@ Para adicionar um ícone novo, copie um `<symbol>` de [lucide.dev](https://lucid
 
 ---
 
-## ⚙️ Build opcional (produção)
+## ⚙️ Build do CSS
 
-A página usa o **Tailwind Play CDN** — zero configuração, ótimo para editar e publicar rápido.
-Ele gera um aviso no console e é um pouco mais pesado. Para gerar um CSS enxuto:
+O Tailwind é **compilado**, não mais via Play CDN. O arquivo `assets/css/tailwind.css`
+está versionado e é o que a página carrega.
+
+**Sempre que você adicionar ou remover uma classe do Tailwind no `index.html`, regere:**
 
 ```bash
-npm install -D tailwindcss@3
-npx tailwindcss -i ./src/input.css -o ./assets/css/tailwind.css --minify
+npx tailwindcss@3 -i ./src/input.css -o ./assets/css/tailwind.css --minify
 ```
 
-Depois, no `index.html`:
+Se esquecer, a classe nova simplesmente não terá efeito — o CSS só contém o que existia
+no HTML na hora do build. Classes que você só usa no `styles.css` não dependem disso.
 
-1. **Remova** as duas linhas do CDN:
-   ```html
-   <script src="https://cdn.tailwindcss.com"></script>
-   <script> tailwind.config = { ... } </script>
-   ```
-2. **Adicione** antes do `styles.css`:
-   ```html
-   <link rel="stylesheet" href="assets/css/tailwind.css" />
-   ```
+### Fontes
 
-O `tailwind.config.js` já está pronto e espelha as cores e fontes do config inline.
+Auto-hospedadas em `assets/fonts/` (4 arquivos woff2, subset latin). Trocaram o Google Fonts,
+que custava ~913 ms de render-blocking e duas conexões externas. As declarações `@font-face`
+estão no topo do `styles.css`, junto de um fallback com métricas ajustadas
+(`size-adjust`/`ascent-override`) que impede o deslocamento de layout quando a fonte carrega.
+
+Para trocar peso ou família, baixe o woff2 correspondente, adicione o `@font-face` e atualize
+o `fontFamily` em `tailwind.config.js`.
 
 ---
+
 
 ## ✅ O que já está incluído
 
