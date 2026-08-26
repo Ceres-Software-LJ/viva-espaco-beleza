@@ -112,7 +112,7 @@ Depois de publicar, volte ao `index.html` e troque `https://viva-espaco-beleza.v
 - **Fotos reais** — hero (`hero.jpg`/`.webp`, 900×1200) e experiência (`unhas.jpg`/`.webp`, 1000×1250),
   geradas a partir de `imagem modelo.jpg` e `imagem unha.jpg` com WebP + fallback JPG
 - **Imagem de compartilhamento** — `og-viva.jpg` (1200×630), recortada da foto do hero
-- **Instagram** — https://www.instagram.com/vivaespacodebeleza.cg/ (rodapé + JSON-LD)
+- **Redes** — Instagram e Facebook (`@vivaespacodebeleza.cg`) no rodapé e no `sameAs` do JSON-LD
 - **Horário** — seg a sex 08:00–18:00, sáb 08:00–14:00 (seção de localização, rodapé e JSON-LD)
 
 ### ⬜ Falta você fazer
