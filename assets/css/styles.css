@@ -1,0 +1,654 @@
+/* ============================================================
+   VIVA ESPAÇO DE BELEZA — estilos customizados
+   Complementa o Tailwind com componentes reutilizáveis.
+   Paleta:
+     verde Viva  #2C5450 | nude dourado #C9A47E | off-white #F7F2EC
+     sage        #7A9691 | grafite      #33322F | WhatsApp  #25D366
+   ============================================================ */
+
+/* ---------- 1. Base ---------- */
+:root {
+  --viva: #2C5450;
+  --viva-dark: #23433F;
+  --nude: #C9A47E;
+  --cream: #F7F2EC;
+  --sage: #7A9691;
+  --graphite: #33322F;
+  --whats: #25D366;
+  --whats-dark: #1FB855;
+  --whats-ink: #08312A; /* texto sobre o verde do WhatsApp (contraste AA) */
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Compensa a navbar fixa ao navegar por âncoras */
+section[id] {
+  scroll-margin-top: 88px;
+}
+
+::selection {
+  background: rgba(201, 164, 126, 0.35);
+  color: var(--viva);
+}
+
+/* ---------- 2. Tipografia auxiliar ---------- */
+.eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+}
+
+/* ---------- 3. Acessibilidade ---------- */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+}
+
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 999px;
+  background: var(--viva);
+  color: var(--cream);
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+:focus-visible {
+  outline: 2px solid var(--nude);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* ---------- 3b. Hero com vídeo de fundo ----------
+   O <video> ocupa todo o hero; o poster cobre o caso em que ele
+   não carrega (mobile, conexão lenta, movimento reduzido).
+   O véu verde por cima garante o contraste do texto.
+   -------------------------------------------------- */
+.hero {
+  min-height: 88vh;
+}
+@media (min-width: 768px) {
+  .hero { min-height: 92vh; }
+}
+
+/* Sobre o vídeo, o nude padrão fica em 3,6:1 — abaixo do mínimo AA.
+   Um nude mais claro devolve o contraste sem perder a cor da marca. */
+.hero .eyebrow { color: #E0C6A6; }
+
+.hero-midia {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* No mobile o recorte vertical precisa cair sobre o pincel e a unha
+     nos DOIS clipes da montagem — 58% é o ponto que atende os dois */
+  object-position: 58% center;
+  pointer-events: none;
+}
+@media (min-width: 768px) {
+  .hero-midia { object-position: center; }
+}
+
+/* Véu: mais denso à esquerda, onde fica o texto */
+.hero-veu {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      100deg,
+      rgba(44, 84, 80, 0.95) 0%,
+      rgba(44, 84, 80, 0.88) 40%,
+      rgba(44, 84, 80, 0.62) 75%,
+      rgba(44, 84, 80, 0.50) 100%
+    ),
+    linear-gradient(to top, rgba(30, 58, 55, 0.85) 0%, rgba(44, 84, 80, 0) 45%);
+}
+/* No mobile o texto ocupa a largura toda: véu parelho e mais fechado */
+@media (max-width: 767px) {
+  .hero-veu {
+    background:
+      linear-gradient(to bottom, rgba(44, 84, 80, 0.86) 0%, rgba(44, 84, 80, 0.90) 55%, rgba(30, 58, 55, 0.94) 100%);
+  }
+}
+
+/* ---------- 4. Botões ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 48px;          /* área de toque confortável no mobile */
+  padding: 0 1.6rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.25s ease, color 0.25s ease,
+              transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+/* Primário — exclusivo do WhatsApp */
+.btn-wa {
+  background: var(--whats);
+  color: var(--whats-ink);
+  box-shadow: 0 10px 24px -14px rgba(37, 211, 102, 0.9);
+}
+.btn-wa:hover {
+  background: var(--whats-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 32px -16px rgba(37, 211, 102, 0.95);
+}
+
+/* Secundário sobre fundo verde */
+.btn-ghost-light {
+  border: 1px solid rgba(201, 164, 126, 0.7);
+  color: var(--cream);
+}
+.btn-ghost-light:hover {
+  background: rgba(201, 164, 126, 0.14);
+  border-color: var(--nude);
+  transform: translateY(-2px);
+}
+
+/* Secundário sobre fundo claro */
+.btn-viva {
+  background: var(--viva);
+  color: var(--cream);
+}
+.btn-viva:hover {
+  background: var(--viva-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 32px -20px rgba(44, 84, 80, 0.9);
+}
+
+/* Micro-CTA dos cards de serviço */
+.micro-cta {
+  margin-top: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 44px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--viva);
+  transition: color 0.2s ease;
+}
+.micro-cta:hover {
+  color: var(--sage);
+}
+
+/* ---------- 5. Cards, ícones e blocos ---------- */
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 2rem 1.75rem;
+  border-radius: 16px;
+  border: 1px solid rgba(201, 164, 126, 0.3);
+  background: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 10px 30px -22px rgba(44, 84, 80, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(201, 164, 126, 0.65);
+  box-shadow: 0 22px 42px -26px rgba(44, 84, 80, 0.5);
+}
+
+/* Selo de ícone — linha fina em nude dourado */
+.icon-badge {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  border: 1px solid rgba(201, 164, 126, 0.45);
+  background: rgba(201, 164, 126, 0.1);
+  color: var(--nude);
+}
+
+/* Variante para fundos verdes */
+.icon-badge-dark {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid rgba(201, 164, 126, 0.35);
+  background: rgba(247, 242, 236, 0.06);
+  color: var(--nude);
+  flex-shrink: 0;
+}
+
+/* Passos numerados */
+.step {
+  position: relative;
+}
+.step-num {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 999px;
+  border: 1px solid rgba(201, 164, 126, 0.55);
+  background: var(--cream);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--viva);
+}
+@media (min-width: 1024px) {
+  /* linha fina ligando os passos */
+  .step::after {
+    content: "";
+    position: absolute;
+    top: 26px;
+    left: 64px;
+    right: -20px;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(201, 164, 126, 0.6), rgba(201, 164, 126, 0));
+  }
+  .step:last-child::after {
+    display: none;
+  }
+}
+
+/* ---------- Depoimentos: esteira contínua ----------
+   O JS duplica os cards e define --marquee-duration pela largura,
+   então a velocidade não muda quando se adiciona ou remove card.
+   O espaçamento é margin-right (e não gap) de propósito: com gap,
+   a metade do trajeto não bate com o ciclo e o loop "pula".
+   ---------------------------------------------------- */
+.marquee {
+  position: relative;
+  overflow: hidden;
+  /* desvanece nas bordas, para os cards não entrarem cortados */
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee var(--marquee-duration, 60s) linear infinite;
+}
+
+/* Pausa quando o visitante quer ler */
+.marquee:hover .marquee-track,
+.marquee:focus-within .marquee-track {
+  animation-play-state: paused;
+}
+
+/* Da esquerda para a direita: parte deslocado e volta a zero */
+@keyframes marquee {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
+/* Cabeçalho do card: estrelas + nota */
+.depo-nota {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.depo-nota-num {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--viva);
+  font-variant-numeric: tabular-nums;
+}
+
+.depo-card {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+  width: 300px;
+  margin-right: 1.25rem;
+  padding: 2rem 1.75rem;
+  border-radius: 16px;
+  border: 1px solid rgba(201, 164, 126, 0.3);
+  background: rgba(255, 255, 255, 0.65);
+  box-shadow: 0 10px 30px -22px rgba(44, 84, 80, 0.4);
+}
+@media (min-width: 768px) {
+  .depo-card {
+    width: 360px;
+    margin-right: 1.5rem;
+  }
+}
+
+/* Movimento reduzido: sem animação, rolagem manual */
+@media (prefers-reduced-motion: reduce) {
+  .marquee {
+    overflow-x: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+  .marquee-track { animation: none; }
+}
+
+/* ---------- 5b. Esmaltação progressiva (seção A experiência) ----------
+   Duas fotos idênticas empilhadas; a de cima (unhas pintadas) é revelada
+   de baixo para cima conforme o scroll. O progresso vem do main.js.
+
+   Mobile/tablet: a seção rola normalmente e a pintura acontece
+   enquanto a foto entra na tela.
+   Desktop (>=1024px): a seção fica presa por ~2 telas e a pintura
+   acompanha o scroll, junto com a entrada dos 4 destaques.
+   ---------------------------------------------------------------------- */
+.esmalte { background: var(--viva); }
+
+.esmalte-camada {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Camada pintada: começa totalmente escondida (JS assume a partir daqui) */
+.esmalte-pintada {
+  clip-path: inset(100% 0 0 0);
+  will-change: clip-path;
+}
+
+/* Faixa de brilho que acompanha a linha do esmalte, como o reflexo do pincel */
+.esmalte-brilho {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 12%;
+  bottom: 0;
+  pointer-events: none;
+  opacity: 0;
+  background: linear-gradient(
+    to top,
+    rgba(201, 164, 126, 0) 0%,
+    rgba(247, 242, 236, 0.30) 55%,
+    rgba(201, 164, 126, 0) 100%
+  );
+  will-change: transform, opacity;
+}
+
+/* Entrada em sequência dos destaques (só quando a seção está presa) */
+.exp-pinned .exp-item {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.exp-pinned .exp-item.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* Contém a folha decorativa (evita scroll horizontal) e ancora os absolutos */
+.exp-sticky {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Fixação da seção — só quando o JS confirma tela grande o bastante */
+.exp-scroll.is-pinned { height: 240vh; }
+.exp-scroll.is-pinned .exp-sticky {
+  position: sticky;
+  top: 0;
+  display: grid;
+  align-content: center;
+  min-height: 100vh;
+}
+
+/* Sem fixação: espaçamento normal da seção */
+.exp-scroll:not(.is-pinned) .exp-sticky {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+@media (min-width: 768px) {
+  .exp-scroll:not(.is-pinned) .exp-sticky {
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+  }
+}
+
+/* Movimento reduzido: mostra direto a foto pintada, sem animação */
+@media (prefers-reduced-motion: reduce) {
+  .esmalte-pintada { clip-path: none !important; }
+  .esmalte-brilho { display: none; }
+  .exp-pinned .exp-item { opacity: 1 !important; transform: none !important; }
+}
+
+/* ---------- 6. Placeholders de imagem ----------
+   Substitua os elementos .ph pelas fotos reais (veja os
+   comentários "TROCAR PELA FOTO REAL" no index.html).
+   ------------------------------------------------ */
+.ph {
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: linear-gradient(145deg, #EFE6D8 0%, #F7F2EC 45%, #E3D3BE 100%);
+  border: 1px solid rgba(201, 164, 126, 0.5);
+}
+.ph::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(110% 75% at 72% 8%, rgba(201, 164, 126, 0.28), transparent 62%);
+  pointer-events: none;
+}
+.ph-label {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  justify-items: center;
+  gap: 0.4rem;
+  padding: 1.5rem;
+  text-align: center;
+  color: #A98457;
+}
+.ph-label span {
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.ph-label small {
+  max-width: 16rem;
+  font-size: 0.72rem;
+  line-height: 1.45;
+  color: rgba(51, 50, 47, 0.55);
+}
+
+/* ---------- 7. Navbar ---------- */
+#site-header {
+  background: rgba(247, 242, 236, 0.82);
+  backdrop-filter: saturate(140%) blur(12px);
+  -webkit-backdrop-filter: saturate(140%) blur(12px);
+  border-bottom: 1px solid rgba(201, 164, 126, 0.25);
+}
+#site-header.is-scrolled {
+  background: rgba(247, 242, 236, 0.96);
+  box-shadow: 0 8px 26px -20px rgba(44, 84, 80, 0.8);
+}
+
+.nav-link {
+  position: relative;
+  padding: 0.25rem 0;
+  transition: color 0.2s ease;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0;
+  height: 1px;
+  background: var(--nude);
+  transition: width 0.3s ease;
+}
+.nav-link:hover {
+  color: var(--viva);
+}
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* ---------- 8. FAQ (acordeão) ---------- */
+.faq-trigger {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  min-height: 56px;
+  padding: 1.35rem 0;
+  text-align: left;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--viva);
+  background: none;
+  border: 0;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+.faq-trigger:hover {
+  color: var(--sage);
+}
+.faq-chevron {
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+.faq-item[data-open="true"] .faq-chevron {
+  transform: rotate(180deg);
+}
+
+/* Animação de altura sem JS de medição */
+.faq-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s ease;
+}
+.faq-item[data-open="true"] .faq-panel {
+  grid-template-rows: 1fr;
+}
+.faq-panel-inner {
+  overflow: hidden;
+  min-height: 0;
+  padding-right: 2rem;
+  font-size: 0.9375rem;
+  line-height: 1.75;
+  color: rgba(51, 50, 47, 0.78);
+}
+/* respiro inferior que colapsa junto com o painel */
+.faq-panel-inner::after {
+  content: "";
+  display: block;
+  height: 1.5rem;
+}
+
+/* Linha de duração do serviço (opcional — ver "PREENCHER" no index.html) */
+.service-time {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.9rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: rgba(51, 50, 47, 0.6);
+}
+.service-time svg { color: var(--nude); }
+
+/* ---------- 9. Botão flutuante do WhatsApp ---------- */
+.wa-fab {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 999px;
+  background: var(--whats);
+  color: var(--whats-ink);
+  box-shadow: 0 14px 30px -12px rgba(8, 49, 42, 0.55);
+  transition: transform 0.25s ease, background-color 0.25s ease;
+}
+.wa-fab:hover {
+  background: var(--whats-dark);
+  transform: translateY(-3px) scale(1.03);
+}
+/* pulsação suave */
+.wa-fab::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 999px;
+  background: var(--whats);
+  opacity: 0.55;
+  animation: wa-pulse 2.6s cubic-bezier(0.22, 0.61, 0.36, 1) infinite;
+}
+@keyframes wa-pulse {
+  0%   { transform: scale(1);    opacity: 0.5; }
+  70%  { transform: scale(1.55); opacity: 0; }
+  100% { transform: scale(1.55); opacity: 0; }
+}
+@media (min-width: 768px) {
+  .wa-fab {
+    right: 1.75rem;
+    bottom: 1.75rem;
+    width: 64px;
+    height: 64px;
+  }
+}
+
+/* ---------- 10. Fade-in ao rolar ---------- */
+/* Só esconde se o JS estiver ativo (classe .js definida no <head>) */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+}
+.js [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.7s cubic-bezier(0.22, 0.61, 0.36, 1),
+              transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* ---------- 11. Utilidades ---------- */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* ---------- 12. Movimento reduzido ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .js [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

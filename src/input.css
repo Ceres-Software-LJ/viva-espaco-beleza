@@ -1,0 +1,4 @@
+/* Entrada do Tailwind para o build opcional de producao (veja README.md) */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

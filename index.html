@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ==========================================================
+       SEO BÁSICO
+       TROCAR: substitua https://viva-espaco-beleza.vercel.app pelo domínio real
+       ========================================================== -->
+  <title>Viva Espaço de Beleza | Salão em Campo Grande — Manicure, Cabelo e Unhas</title>
+  <meta name="description" content="Salão de beleza em Campo Grande/MS. Manicure e pedicure, escova e tratamentos, unhas em gel e alongamento em um espaço acolhedor. Nota 4,7 no Google. Agende pelo WhatsApp." />
+  <meta name="theme-color" content="#2C5450" />
+  <link rel="canonical" href="https://viva-espaco-beleza.vercel.app/" />
+
+  <!-- Open Graph / compartilhamento -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:site_name" content="Viva Espaço de Beleza" />
+  <meta property="og:title" content="Viva Espaço de Beleza | Beleza com cuidado de verdade" />
+  <meta property="og:description" content="Manicure, cabelo e unhas em um espaço acolhedor em Campo Grande/MS. Agende seu horário pelo WhatsApp." />
+  <meta property="og:url" content="https://viva-espaco-beleza.vercel.app/" />
+  <!-- Imagem de compartilhamento 1200x630 (gerada a partir da foto do hero) -->
+  <meta property="og:image" content="https://viva-espaco-beleza.vercel.app/assets/img/og-viva.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="icon" href="assets/img/logo-viva.jpg" />
+  <link rel="apple-touch-icon" href="assets/img/logo-viva.jpg" />
+
+  <!-- Google Fonts: Cormorant Garamond (títulos) + Montserrat (corpo) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- ==========================================================
+       TAILWIND — modo Play CDN (zero build; basta abrir o arquivo).
+       Para produção, veja "Build opcional" no README.md
+       ========================================================== -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            viva:     '#2C5450', // verde âncora
+            nude:     '#C9A47E', // nude dourado (destaques)
+            cream:    '#F7F2EC', // off-white quente (seções claras)
+            sage:     '#7A9691', // verde claro secundário
+            mist:     '#E9EFEC', // lavagem clara de sage
+            graphite: '#33322F', // texto longo
+            whats:    '#25D366'  // verde WhatsApp (exclusivo dos botões)
+          },
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            sans:  ['Montserrat', 'system-ui', '-apple-system', 'sans-serif']
+          },
+          boxShadow: {
+            soft: '0 10px 30px -14px rgba(44,84,80,.25)',
+            lift: '0 18px 40px -18px rgba(44,84,80,.35)'
+          },
+          maxWidth: { content: '1180px' },
+          screens: { xs: '400px' }
+        }
+      }
+    }
+  </script>
+
+  <link rel="stylesheet" href="assets/css/styles.css" />
+
+  <!-- Sinaliza JS ativo: evita que o conteúdo animado fique invisível se o JS falhar -->
+  <script>document.documentElement.classList.add('js');</script>
+
+  <!-- ==========================================================
+       DADOS ESTRUTURADOS — LocalBusiness (JSON-LD)
+       ========================================================== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BeautySalon",
+    "name": "Viva Espaço de Beleza",
+    "description": "Salão de beleza em Campo Grande/MS: manicure e pedicure, cabelo (escova e tratamentos), unhas em gel e alongamento.",
+    "image": "https://viva-espaco-beleza.vercel.app/assets/img/og-viva.jpg",
+    "logo": "https://viva-espaco-beleza.vercel.app/assets/img/logo-viva.jpg",
+    "url": "https://viva-espaco-beleza.vercel.app/",
+    "telephone": "+5567998097880",
+    "priceRange": "$$",
+    "currenciesAccepted": "BRL",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Av. Três Barras, 1733",
+      "addressLocality": "Campo Grande",
+      "addressRegion": "MS",
+      "postalCode": "79051-290",
+      "addressCountry": "BR"
+    },
+    "areaServed": { "@type": "City", "name": "Campo Grande" },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+        "opens": "08:00",
+        "closes": "18:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Saturday",
+        "opens": "08:00",
+        "closes": "14:00"
+      }
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.7",
+      "reviewCount": "16",
+      "bestRating": "5"
+    },
+    "sameAs": ["https://www.instagram.com/vivaespacodebeleza.cg/"],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Serviços",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Manicure e pedicure" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Escova e tratamentos capilares" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Unhas em gel e alongamento" } }
+      ]
+    }
+  }
+  </script>
+</head>
+
+<body class="bg-cream font-sans text-graphite antialiased">
+
+  <!-- Pulo de conteúdo (aparece na navegação por teclado) -->
+  <a href="#conteudo" class="skip-link">Pular para o conteúdo</a>
+
+  <!-- ==========================================================
+       SPRITE DE ÍCONES (linha fina, estilo Lucide)
+       Uso: <svg class="w-6 h-6"><use href="#i-nome"></use></svg>
+       ========================================================== -->
+  <svg width="0" height="0" class="hidden" aria-hidden="true" focusable="false">
+    <symbol id="i-leaf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+    </symbol>
+    <symbol id="i-sparkles" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3L12 3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/>
+    </symbol>
+    <symbol id="i-scissors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="6" cy="6" r="3"/><path d="M8.12 8.12 12 12"/><path d="M20 4 8.12 15.88"/><circle cx="6" cy="18" r="3"/><path d="M14.8 14.8 20 20"/>
+    </symbol>
+    <symbol id="i-gem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 3h12l4 6-10 13L2 9Z"/><path d="M11 3 8 9l4 13 4-13-3-6"/><path d="M2 9h20"/>
+    </symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+    </symbol>
+    <symbol id="i-coffee" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M10 2v2"/><path d="M14 2v2"/><path d="M6 2v2"/><path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1"/>
+    </symbol>
+    <symbol id="i-droplet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7Z"/>
+    </symbol>
+    <symbol id="i-smile" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><path d="M9 9h.01"/><path d="M15 9h.01"/>
+    </symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1Z"/><path d="m9 12 2 2 4-4"/>
+    </symbol>
+    <symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+    </symbol>
+    <symbol id="i-armchair" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M19 9V6a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v3"/><path d="M3 11v5a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v2H7v-2a2 2 0 0 0-4 0Z"/><path d="M5 18v2"/><path d="M19 18v2"/>
+    </symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+    </symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>
+    </symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.2 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/>
+    </symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="m9 16 2 2 4-4"/>
+    </symbol>
+    <symbol id="i-navigation" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 11 22 2l-9 19-2-8-8-2Z"/>
+    </symbol>
+    <symbol id="i-instagram" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <rect width="20" height="20" x="2" y="2" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37Z"/><path d="M17.5 6.5h.01"/>
+    </symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m6 9 6 6 6-6"/>
+    </symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+    </symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/>
+    </symbol>
+    <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 6 18 18"/><path d="M18 6 6 18"/>
+    </symbol>
+    <symbol id="i-star" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M12 2.6l2.85 5.77 6.37.93-4.61 4.49 1.09 6.35L12 17.14l-5.7 3 1.09-6.35-4.61-4.49 6.37-.93L12 2.6Z"/>
+    </symbol>
+    <symbol id="i-whatsapp" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.16 8.16 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.19 8.19 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.25 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.48c-.16 0-.43.06-.65.31-.22.25-.85.83-.85 2.03s.87 2.35.99 2.51c.12.16 1.71 2.61 4.15 3.66.58.25 1.03.4 1.39.51.58.19 1.11.16 1.53.1.47-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.11-.22-.17-.47-.29Z"/>
+    </symbol>
+  </svg>
+
+  <!-- ==========================================================
+       1. NAVBAR FIXA
+       ========================================================== -->
+  <header id="site-header" class="fixed inset-x-0 top-0 z-40 transition-all duration-300">
+    <div class="mx-auto flex max-w-content items-center justify-between gap-4 px-5 py-3 md:px-8">
+
+      <!-- Logo -->
+      <a href="#inicio" class="flex items-center gap-3" aria-label="Viva Espaço de Beleza — início">
+        <img src="assets/img/logo-viva.jpg" alt="Logo Viva Espaço de Beleza" width="200" height="200"
+             class="h-11 w-11 rounded-xl object-cover ring-1 ring-nude/40 md:h-12 md:w-12" />
+        <span class="leading-tight">
+          <span class="block font-serif text-xl font-semibold tracking-wide text-viva md:text-2xl">Viva</span>
+          <span class="block text-[10px] uppercase tracking-[0.22em] text-nude">Espaço de Beleza</span>
+        </span>
+      </a>
+
+      <!-- Links (desktop) -->
+      <nav class="hidden items-center gap-7 text-sm font-medium text-graphite/80 lg:flex" aria-label="Navegação principal">
+        <a href="#servicos" class="nav-link">Serviços</a>
+        <a href="#experiencia" class="nav-link">A experiência</a>
+        <a href="#depoimentos" class="nav-link">Depoimentos</a>
+        <a href="#localizacao" class="nav-link">Onde estamos</a>
+        <a href="#faq" class="nav-link">Dúvidas</a>
+      </nav>
+
+      <!-- Nota Google + CTA -->
+      <div class="flex items-center gap-2 md:gap-3">
+        <span class="hidden items-center gap-1.5 rounded-full border border-nude/40 bg-white/60 px-3 py-1.5 text-xs font-medium text-viva sm:flex">
+          <svg class="h-3.5 w-3.5 text-nude" aria-hidden="true"><use href="#i-star"></use></svg>
+          4,7 <span class="text-graphite/60">Google</span>
+        </span>
+
+        <a class="btn btn-wa !min-h-[44px] !px-4 text-[13px] md:!px-5 md:text-sm"
+           href="https://wa.me/5567998097880?text=Oi!%20Vim%20pelo%20site%20e%20quero%20agendar%20meu%20horário%20💅"
+           target="_blank" rel="noopener" aria-label="Agendar pelo WhatsApp">
+          <svg class="h-[18px] w-[18px]" aria-hidden="true"><use href="#i-whatsapp"></use></svg>
+          <span class="hidden xs:inline">Agendar</span>
+        </a>
+
+        <!-- Botão do menu mobile -->
+        <button id="menu-btn" type="button"
+                class="grid h-11 w-11 place-items-center rounded-xl border border-viva/20 text-viva lg:hidden"
+                aria-expanded="false" aria-controls="menu-mobile" aria-label="Abrir menu">
+          <svg class="h-6 w-6" id="menu-icon" aria-hidden="true"><use href="#i-menu"></use></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Menu mobile -->
+    <nav id="menu-mobile" class="hidden border-t border-nude/25 bg-cream/95 backdrop-blur lg:hidden" aria-label="Navegação mobile">
+      <ul class="mx-auto max-w-content px-5 py-3 text-[15px] font-medium text-graphite">
+        <li><a class="block border-b border-nude/20 py-3" href="#servicos">Serviços</a></li>
+        <li><a class="block border-b border-nude/20 py-3" href="#experiencia">A experiência Viva</a></li>
+        <li><a class="block border-b border-nude/20 py-3" href="#diferenciais">Por que escolher</a></li>
+        <li><a class="block border-b border-nude/20 py-3" href="#depoimentos">Depoimentos</a></li>
+        <li><a class="block border-b border-nude/20 py-3" href="#localizacao">Onde estamos</a></li>
+        <li><a class="block py-3" href="#faq">Dúvidas frequentes</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="conteudo">
+
+    <!-- ==========================================================
+         2. HERO — fundo verde Viva, layout editorial assimétrico
+         ========================================================== -->
+    <section id="inicio" class="hero relative isolate flex items-center overflow-hidden bg-viva pb-16 pt-28 md:pb-24 md:pt-36">
+
+      <!-- ==========================================================
+           Fundo do hero
+           Desktop: vídeo em loop (a unha sendo pintada).
+           Mobile / conexão lenta / prefers-reduced-motion:
+           só o poster, sem baixar vídeo nenhum.
+           O <video> não tem src no HTML — o main.js injeta as fontes
+           quando as condições permitem (initHeroVideo).
+           ========================================================== -->
+      <video id="hero-video" class="hero-midia"
+             poster="assets/img/hero-loop-poster.jpg"
+             muted loop playsinline preload="none" disablepictureinpicture
+             aria-hidden="true" tabindex="-1"
+             data-webm="assets/img/hero-loop.webm"
+             data-mp4="assets/img/hero-loop.mp4"></video>
+
+      <!-- Véu verde: garante o contraste do texto sobre o vídeo -->
+      <div class="hero-veu" aria-hidden="true"></div>
+
+      <div class="relative mx-auto w-full max-w-content px-5 md:px-8">
+
+        <!-- Coluna de texto -->
+        <div class="max-w-2xl" data-reveal>
+          <p class="eyebrow text-nude">Salão de beleza · Campo Grande / MS</p>
+
+          <h1 class="mt-4 font-serif text-[2.1rem] font-semibold leading-[1.08] text-cream sm:mt-5 sm:text-5xl lg:text-[3.5rem]">
+            Manicure, cabelo e unhas<br class="hidden sm:block" />
+            com o capricho <span class="text-nude">que dura.</span>
+          </h1>
+
+          <p class="mt-4 max-w-xl text-[15px] leading-relaxed text-cream/80 sm:mt-6 md:text-base">
+            Um salão na Vila Vilas Boas onde você é recebida pelo nome, relaxa de verdade
+            e sai com o resultado que veio buscar. Tem cliente com a gente há mais de três anos.
+          </p>
+
+          <!-- CTAs -->
+          <div class="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <a class="btn btn-wa w-full sm:w-auto"
+               href="https://wa.me/5567998097880?text=Oi!%20Vim%20pelo%20site%20e%20quero%20agendar%20meu%20horário%20💅"
+               target="_blank" rel="noopener">
+              <svg class="h-5 w-5" aria-hidden="true"><use href="#i-whatsapp"></use></svg>
+              Quero agendar meu horário
+            </a>
+            <a class="btn btn-ghost-light w-full sm:w-auto" href="#servicos">
+              Ver serviços
+              <svg class="h-4 w-4" aria-hidden="true"><use href="#i-arrow"></use></svg>
+            </a>
+          </div>
+
+          <!-- Microcopy de segurança logo abaixo do botão -->
+          <p class="mt-4 text-[13px] text-cream/70">
+            Sem compromisso · Seg a sex 8h–18h · Sáb 8h–14h
+          </p>
+
+          <!-- Selo Google — abaixo dos CTAs para não empurrar o botão para fora da primeira tela -->
+          <div class="mt-6 inline-flex items-center gap-3 rounded-full border border-nude/30 bg-white/5 px-4 py-2">
+            <span class="flex gap-0.5 text-nude" aria-hidden="true">
+              <svg class="h-4 w-4"><use href="#i-star"></use></svg>
+              <svg class="h-4 w-4"><use href="#i-star"></use></svg>
+              <svg class="h-4 w-4"><use href="#i-star"></use></svg>
+              <svg class="h-4 w-4"><use href="#i-star"></use></svg>
+              <svg class="h-4 w-4"><use href="#i-star"></use></svg>
+            </span>
+            <span class="text-sm text-cream/90"><strong class="font-semibold">4,7</strong> no Google · 16 avaliações</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================
+         3. BARRA DE CONFIANÇA
+         ========================================================== -->
+    <section aria-label="Motivos para confiar" class="border-y border-nude/25 bg-cream">
+      <ul class="mx-auto grid max-w-content grid-cols-2 gap-x-6 gap-y-5 px-5 py-7 text-sm md:grid-cols-4 md:px-8 md:py-8">
+        <li class="flex items-center gap-2.5">
+          <svg class="h-5 w-5 shrink-0 text-nude" aria-hidden="true"><use href="#i-star"></use></svg>
+          <span><strong class="font-semibold text-viva">4,7★</strong> no Google</span>
+        </li>
+        <li class="flex items-center gap-2.5">
+          <svg class="h-5 w-5 shrink-0 text-nude" aria-hidden="true"><use href="#i-users"></use></svg>
+          <span><strong class="font-semibold text-viva">+3 anos</strong> de clientela</span>
+        </li>
+        <li class="flex items-center gap-2.5">
+          <svg class="h-5 w-5 shrink-0 text-nude" aria-hidden="true"><use href="#i-heart"></use></svg>
+          <span>Espaço acolhedor <strong class="font-semibold text-viva">LGBTQ+</strong></span>
+        </li>
+        <li class="flex items-center gap-2.5">
+          <svg class="h-5 w-5 shrink-0 text-nude" aria-hidden="true"><use href="#i-calendar"></use></svg>
+          <span>Agendamento <strong class="font-semibold text-viva">fácil</strong></span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ==========================================================
+         4. SERVIÇOS
+         ========================================================== -->
+    <section id="servicos" class="bg-cream py-20 md:py-28">
+      <div class="mx-auto max-w-content px-5 md:px-8">
+
+        <header class="max-w-2xl" data-reveal>
+          <p class="eyebrow text-nude">Nossos serviços</p>
+          <h2 class="mt-4 font-serif text-4xl font-semibold leading-tight text-viva md:text-5xl">
+            Cuidado do começo ao acabamento
+          </h2>
+          <p class="mt-5 text-[15px] leading-relaxed text-graphite/75 md:text-base">
+            Escolha o que você quer fazer e chame a gente no WhatsApp. Os valores mudam conforme o
+            comprimento do cabelo e o tipo de unha — a gente te passa o preço exato na hora,
+            sem compromisso.
+          </p>
+        </header>
+
+        <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+
+          <!-- Card: Manicure & Pedicure -->
+          <article class="card group" data-reveal>
+            <span class="icon-badge"><svg class="h-6 w-6" aria-hidden="true"><use href="#i-sparkles"></use></svg></span>
+            <h3 class="mt-6 font-serif text-2xl font-semibold text-viva">Manicure &amp; Pedicure</h3>
+            <p class="mt-3 flex-1 text-sm leading-relaxed text-graphite/75">
+              Unhas bem-feitas, com capricho no acabamento e aquele cuidado que faz diferença.
+              Esmaltação tradicional ou em gel.
+            </p>
+            <!-- PREENCHER a duração e descomentar:
+            <p class="service-time"><svg class="h-3.5 w-3.5" aria-hidden="true"><use href="#i-clock"></use></svg> cerca de 1h</p>
+            -->
+            <a class="micro-cta"
+               href="https://wa.me/5567998097880?text=Oi!%20Vim%20pelo%20site%20e%20quero%20agendar%20manicure/pedicure%20💅"
+               target="_blank" rel="noopener">
+              Agendar manicure <svg class="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true"><use href="#i-arrow"></use></svg>
+            </a>
+          </article>
+
+          <!-- Card: Cabelo -->
+          <article class="card group" data-reveal>
+            <span class="icon-badge"><svg class="h-6 w-6" aria-hidden="true"><use href="#i-scissors"></use></svg></span>
+            <h3 class="mt-6 font-serif text-2xl font-semibold text-viva">Cabelo — Escova &amp; Tratamento</h3>
+            <p class="mt-3 flex-1 text-sm leading-relaxed text-graphite/75">
+              Escova modeladora, hidratação e tratamentos para deixar seu cabelo saudável,
+              com brilho e um resultado que dura mais.
+            </p>
+            <!-- PREENCHER a duração e descomentar:
+            <p class="service-time"><svg class="h-3.5 w-3.5" aria-hidden="true"><use href="#i-clock"></use></svg> cerca de 1h</p>
+            -->
+            <a class="micro-cta"
+               href="https://wa.me/5567998097880?text=Oi!%20Vim%20pelo%20site%20e%20quero%20agendar%20uma%20escova/tratamento%20💇‍♀️"
+               target="_blank" rel="noopener">
+              Agendar escova <svg class="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true"><use href="#i-arrow"></use></svg>
+            </a>
+          </article>
+
+          <!-- Card: Unhas em gel -->
+          <article class="card group" data-reveal>
+            <span class="icon-badge"><svg class="h-6 w-6" aria-hidden="true"><use href="#i-gem"></use></svg></span>
+            <h3 class="mt-6 font-serif text-2xl font-semibold text-viva">Unhas em Gel &amp; Alongamento</h3>
+            <p class="mt-3 flex-1 text-sm leading-relaxed text-graphite/75">
+              Alongamento e nail art para unhas bonitas, resistentes e do seu jeito.
+            </p>
+            <!-- PREENCHER a duração e descomentar:
+            <p class="service-time"><svg class="h-3.5 w-3.5" aria-hidden="true"><use href="#i-clock"></use></svg> cerca de 2h</p>
+            -->
+            <a class="micro-cta"
+               href="https://wa.me/5567998097880?text=Oi!%20Vim%20pelo%20site%20e%20quero%20agendar%20unhas%20em%20gel/alongamento%20✨"
+               target="_blank" rel="noopener">
+              Agendar alongamento <svg class="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true"><use href="#i-arrow"></use></svg>
+            </a>
+          </article>
+
+          <!-- Card: Cuidados & bem-estar -->
+          <article class="card group" data-reveal>
+            <span class="icon-badge"><svg class="h-6 w-6" aria-hidden="true"><use href="#i-heart"></use></svg></span>
+            <h3 class="mt-6 font-serif text-2xl font-semibold text-viva">Cuidados &amp; Bem-estar</h3>
+            <p class="mt-3 flex-1 text-sm leading-relaxed text-graphite/75">
+              A experiência completa: recepção acolhedora, massagem no lavatório e aquele carinho
+              que transforma seu horário num momento só seu.
+            </p>
+            <a class="micro-cta"
+               href="https://wa.me/5567998097880?text=Oi!%20Vim%20pelo%20site%20e%20quero%20agendar%20um%20dia%20de%20cuidados%20no%20Viva%20💛"
+               target="_blank" rel="noopener">
+              Quero a experiência completa <svg class="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true"><use href="#i-arrow"></use></svg>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================
+         5. A EXPERIÊNCIA VIVA — fundo verde
+         ========================================================== -->
+    <section id="experiencia" class="exp-scroll relative bg-viva">
+      <div class="exp-sticky">
+      <svg class="pointer-events-none absolute -left-20 bottom-0 h-80 w-80 rotate-12 text-nude/10" aria-hidden="true">
+        <use href="#i-leaf"></use>
+      </svg>
+
+      <div class="mx-auto grid max-w-content items-center gap-12 px-5 md:px-8 lg:grid-cols-2 lg:gap-16">
+
+        <!-- ==========================================================
+             Foto com esmaltação progressiva conforme o scroll.
+             Duas camadas sobrepostas e alinhadas ao pixel:
+               base    = unhas sem esmalte
+               pintada = unhas esmaltadas, revelada de baixo para cima
+             O clip-path é atualizado pelo main.js (initEsmalte).
+             ========================================================== -->
+        <div class="order-2 lg:order-1" data-reveal>
+          <div class="relative mx-auto max-w-md lg:max-w-none">
+            <div class="pointer-events-none absolute -bottom-4 -right-4 h-full w-full rounded-[18px] border border-nude/40" aria-hidden="true"></div>
+
+            <figure id="esmalte" class="esmalte relative aspect-[4/5] w-full overflow-hidden rounded-[18px] shadow-lift">
+              <picture>
+                <source srcset="assets/img/unhas-sem-esmalte.webp" type="image/webp" />
+                <img src="assets/img/unhas-sem-esmalte.jpg"
+                     alt="Mãos com as unhas naturais, antes da esmaltação, no salão Viva Espaço de Beleza"
+                     width="1000" height="1250" loading="lazy" decoding="async"
+                     class="esmalte-camada" />
+              </picture>
+              <picture>
+                <source srcset="assets/img/unhas.webp" type="image/webp" />
+                <img src="assets/img/unhas.jpg"
+                     alt="As mesmas mãos com as unhas esmaltadas em marrom café"
+                     width="1000" height="1250" loading="lazy" decoding="async"
+                     class="esmalte-camada esmalte-pintada" />
+              </picture>
+              <span class="esmalte-brilho" aria-hidden="true"></span>
+            </figure>
+
+            <!-- Fallback estático: sem JS, mostra só a foto esmaltada -->
+            <noscript>
+              <img src="assets/img/unhas.jpg" alt="Mãos com unhas esmaltadas em marrom café"
+                   width="1000" height="1250"
+                   class="relative aspect-[4/5] w-full rounded-[18px] object-cover shadow-lift" />
+            </noscript>
+          </div>
+        </div>
+
+        <!-- Texto -->
+        <div class="order-1 lg:order-2" data-reveal>
+          <p class="eyebrow text-nude">A experiência Viva</p>
+          <h2 class="mt-4 font-serif text-4xl font-semibold leading-tight text-cream md:text-5xl">
+            Aqui, o luxo é o cuidado
+          </h2>
+          <p class="mt-5 text-[15px] leading-relaxed text-cream/80 md:text-base">
+            Tem salão que só faz a unha. E tem o Viva. Você é recebida pelo nome, senta com um cafezinho,
+            relaxa na massagem do lavatório e sai com a sensação de ter tirado um tempo pra você.
+            É esse detalhe — o carinho no meio do serviço — que faz nossas clientes voltarem há mais de três anos.
+          </p>
+
+          <ul class="mt-9 grid gap-5 sm:grid-cols-2">
+            <li class="exp-item flex gap-3.5">
+              <span class="icon-badge-dark"><svg class="h-5 w-5" aria-hidden="true"><use href="#i-heart"></use></svg></span>
+              <div>
+                <h3 class="font-serif text-xl text-cream">Recepção que acolhe</h3>
+                <p class="mt-1 text-sm text-cream/70">Você chega e já é tratada como gente de casa.</p>
+              </div>
+            </li>
+            <li class="exp-item flex gap-3.5">
+              <span class="icon-badge-dark"><svg class="h-5 w-5" aria-hidden="true"><use href="#i-coffee"></use></svg></span>
+              <div>
+                <h3 class="font-serif text-xl text-cream">Cafezinho e biscoito de nata</h3>
+                <p class="mt-1 text-sm text-cream/70">O caseiro que todo mundo pede a receita.</p>
+              </div>
+            </li>
+            <li class="exp-item flex gap-3.5">
+              <span class="icon-badge-dark"><svg class="h-5 w-5" aria-hidden="true"><use href="#i-droplet"></use></svg></span>
+              <div>
+                <h3 class="font-serif text-xl text-cream">Massagem no lavatório</h3>
+                <p class="mt-1 text-sm text-cream/70">Aquele momento de relaxar de verdade.</p>
+              </div>
+            </li>
+            <li class="exp-item flex gap-3.5">
+              <span class="icon-badge-dark"><svg class="h-5 w-5" aria-hidden="true"><use href="#i-smile"></use></svg></span>
+              <div>
+                <h3 class="font-serif text-xl text-cream">Boa energia</h3>
+                <p class="mt-1 text-sm text-cream/70">Conversa boa, risada e zero julgamento.</p>
+              </div>
+            </li>
+          </ul>
+
+          <a class="btn btn-wa mt-9 w-full sm:w-auto"
+             href="https://wa.me/5567998097880?text=Oi!%20Vim%20pelo%20site,%20quero%20conhecer%20o%20Viva%20e%20agendar%20meu%20horário%20💛"
+             target="_blank" rel="noopener">
+            <svg class="h-5 w-5" aria-hidden="true"><use href="#i-whatsapp"></use></svg>
+            Venha viver essa experiência
+          </a>
+        </div>
+      </div>
+      </div><!-- /.exp-sticky -->
+    </section>
+
+    <!-- ==========================================================
+         6. POR QUE ESCOLHER O VIVA
+         ========================================================== -->
+    <section id="diferenciais" class="bg-cream py-20 md:py-28">
+      <div class="mx-auto max-w-content px-5 md:px-8">
+
+        <header class="mx-auto max-w-2xl text-center" data-reveal>
+          <p class="eyebrow text-nude">Por que escolher o Viva</p>
+          <h2 class="mt-4 font-serif text-4xl font-semibold leading-tight text-viva md:text-5xl">
+            O que nossas clientes<br class="hidden sm:block" /> mais valorizam
+          </h2>
+          <span class="mx-auto mt-6 block h-px w-16 bg-nude/60" aria-hidden="true"></span>
+        </header>
+
+        <div class="mt-14 grid gap-x-10 gap-y-11 sm:grid-cols-2 lg:grid-cols-3">
+          <article class="flex gap-4" data-reveal>
+            <span class="icon-badge shrink-0"><svg class="h-6 w-6" aria-hidden="true"><use href="#i-heart"></use></svg></span>
+            <div>
+              <h3 class="font-serif text-2xl font-semibold text-viva">Atendimento humano e caloroso</h3>
+              <p class="mt-2 text-sm leading-relaxed text-graphite/75">Aqui você é gente, não senha. Recebemos cada cliente com atenção e carinho.</p>
+            </div>
+          </article>
+
+          <article class="flex gap-4" data-reveal>
+            <span class="icon-badge shrink-0"><svg class="h-6 w-6" aria-hidden="true"><use href="#i-sparkles"></use></svg></span>
+            <div>
+              <h3 class="font-serif text-2xl font-semibold text-viva">Resultado que dura</h3>
+              <p class="mt-2 text-sm leading-relaxed text-graphite/75">Capricho no acabamento para sua unha e seu cabelo ficarem lindos por mais tempo.</p>
+            </div>
+          </article>
+
+          <article class="flex gap-4" data-reveal>
+            <span class="icon-badge shrink-0"><svg class="h-6 w-6" aria-hidden="true"><use href="#i-shield"></use></svg></span>
+            <div>
+              <h3 class="font-serif text-2xl font-semibold text-viva">Cuidado e higiene</h3>
+              <p class="mt-2 text-sm leading-relaxed text-graphite/75">Materiais devidamente higienizados e todo o cuidado com você a cada atendimento.</p>
+            </div>
+          </article>
+
+          <article class="flex gap-4" data-reveal>
+            <span class="icon-badge shrink-0"><svg class="h-6 w-6" aria-hidden="true"><use href="#i-users"></use></svg></span>
+            <div>
+              <h3 class="font-serif text-2xl font-semibold text-viva">Equipe simpática e experiente</h3>
+              <p class="mt-2 text-sm leading-relaxed text-graphite/75">Profissionais queridas pelas clientes, que fazem do seu jeito.</p>
+            </div>
+          </article>
+
+          <article class="flex gap-4" data-reveal>
+            <span class="icon-badge shrink-0"><svg class="h-6 w-6" aria-hidden="true"><use href="#i-armchair"></use></svg></span>
+            <div>
+              <h3 class="font-serif text-2xl font-semibold text-viva">Ambiente agradável e acolhedor</h3>
+              <p class="mt-2 text-sm leading-relaxed text-graphite/75">Um espaço leve, com boa energia, onde todas as pessoas são bem-vindas.</p>
+            </div>
+          </article>
+
+          <article class="flex gap-4" data-reveal>
+            <span class="icon-badge shrink-0"><svg class="h-6 w-6" aria-hidden="true"><use href="#i-smile"></use></svg></span>
+            <div>
+              <h3 class="font-serif text-2xl font-semibold text-viva">Clientes que viram amigas</h3>
+              <p class="mt-2 text-sm leading-relaxed text-graphite/75">Muitas estão com a gente há anos. Nota 4,7 no Google conta essa história.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================
+         7. COMO FUNCIONA
+         ========================================================== -->
+    <section id="como-funciona" class="bg-mist py-20 md:py-28">
+      <div class="mx-auto max-w-content px-5 md:px-8">
+
+        <header class="mx-auto max-w-2xl text-center" data-reveal>
+          <p class="eyebrow text-sage">Como funciona</p>
+          <h2 class="mt-4 font-serif text-4xl font-semibold leading-tight text-viva md:text-5xl">
+            Agendar leva menos de um minuto
+          </h2>
+        </header>
+
+        <ol class="mt-14 grid gap-8 md:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+          <li class="step" data-reveal>
+            <span class="step-num">1</span>
+            <h3 class="mt-5 font-serif text-2xl font-semibold text-viva">Chame no WhatsApp</h3>
+            <p class="mt-2 text-sm leading-relaxed text-graphite/75">Conte o que quer fazer e escolha dia e horário.</p>
+          </li>
+          <li class="step" data-reveal>
+            <span class="step-num">2</span>
+            <h3 class="mt-5 font-serif text-2xl font-semibold text-viva">A gente confirma tudo</h3>
+            <p class="mt-2 text-sm leading-relaxed text-graphite/75">Combinamos o serviço, tiramos dúvidas e reservamos seu horário.</p>
+          </li>
+          <li class="step" data-reveal>
+            <span class="step-num">3</span>
+            <h3 class="mt-5 font-serif text-2xl font-semibold text-viva">Você chega e relaxa</h3>
+            <p class="mt-2 text-sm leading-relaxed text-graphite/75">Recepção acolhedora, um cafezinho, e o resto deixa com a gente.</p>
+          </li>
+          <li class="step" data-reveal>
+            <span class="step-num">4</span>
+            <h3 class="mt-5 font-serif text-2xl font-semibold text-viva">Sai linda e bem cuidada</h3>
+            <p class="mt-2 text-sm leading-relaxed text-graphite/75">Resultado caprichado e vontade de voltar.</p>
+          </li>
+        </ol>
+
+        <div class="mt-12 text-center" data-reveal>
+          <a class="btn btn-wa w-full sm:w-auto"
+             href="https://wa.me/5567998097880?text=Oi!%20Vim%20pelo%20site%20e%20quero%20começar%20meu%20agendamento%20💅"
+             target="_blank" rel="noopener">
+            <svg class="h-5 w-5" aria-hidden="true"><use href="#i-whatsapp"></use></svg>
+            Começar pelo WhatsApp
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================
+         8. DEPOIMENTOS
+         7 avaliações reais do perfil do Google, com correções
+         mínimas de digitação. As datas são relativas a ago/2026.
+         ========================================================== -->
+    <section id="depoimentos" class="bg-cream py-20 md:py-28">
+      <div class="mx-auto max-w-content px-5 md:px-8">
+
+        <header class="mx-auto max-w-2xl text-center" data-reveal>
+          <p class="eyebrow text-nude">Quem já passou por aqui</p>
+          <h2 class="mt-4 font-serif text-4xl font-semibold leading-tight text-viva md:text-5xl">
+            4,7 no Google, contado por elas
+          </h2>
+        </header>
+
+        <!-- ==========================================================
+             Esteira contínua de avaliações.
+             O main.js (initMarquee) duplica os cards para o loop ficar
+             sem emenda e calcula a duração pela largura, para a
+             velocidade não mudar quando você adicionar ou remover
+             depoimentos. Pausa no hover e ao focar pelo teclado.
+             Com prefers-reduced-motion vira rolagem manual.
+             ========================================================== -->
+        <div class="marquee mt-12" data-reveal>
+          <div id="depo-track" class="marquee-track"
+               role="group" aria-label="Avaliações de clientes no Google">
+
+          <figure class="depo-card">
+            <div class="depo-nota">
+              <span class="flex gap-0.5 text-nude" role="img" aria-label="5 de 5 estrelas">
+                <svg class="h-4 w-4" aria-hidden="true"><use href="#i-star"></use></svg>
+                <svg class="h-4 w-4" aria-hidden="true"><use href="#i-star"></use></svg>
+                <svg class="h-4 w-4" aria-hidden="true"><use href="#i-star"></use></svg>
+                <svg class="h-4 w-4" aria-hidden="true"><use href="#i-star"></use></svg>
+                <svg class="h-4 w-4" aria-hidden="true"><use href="#i-star"></use></svg>
+              </span>
+              <span class="depo-nota-num">5,0</span>
+            </div>
+            <blockquote class="mt-5 flex-1 font-serif text-xl leading-snug text-viva">
+              “Ambiente acolhedor, atendimento impecável e resultado incrível. Excelentes e simpáticos profissionais.”
+            </blockquote>
+            <figcaption class="mt-6 border-t border-nude/25 pt-4 text-sm">
+              <span class="font-semibold text-graphite">Rafael R.</span>
+              <span class="block text-graphite/60">Local Guide · há 4 meses</span>
+            </figcaption>
+          </figure>
+
+          <figure class="depo-card">
+            <div class="depo-nota">
+              <span class="flex gap-0.5 text-nude" role="img" aria-label="5 de 5 estrelas">
+                <svg class="h-4 w-4" aria-hidden="true"><use href="#i-star"></use></svg>
+                <svg class="h-4 w-4" aria-hidden="true"><use href="#i-star"></use></svg>
+                <svg class="h-4 w-4" aria-hidden="true"><use href="#i-star"></use></svg>
+                <svg class="h-4 w-4" aria-hidden="true"><use href="#i-star"></use></svg>
+                <svg class="h-4 w-4" aria-hidden="true"><use href="#i-star"></use></svg>
+              </span>
+              <span class="depo-nota-num">5,0</span>
+            </div>
+            <blockquote class="mt-5 flex-1 font-serif text-xl leading-snug text-viva">
+              “Fui muito bem atendida, me receberam de forma muito educada e carinhosa, saboreei um biscoito caseiro de nata delicioso. Sem falar na massagem incrível no lavatório — e a escova ficou perfeita e durou muito.”
+            </blockquote>
+            <figcaption class="mt-6 border-t border-nude/25 pt-4 text-sm">
+              <span class="font-semibold text-graphite">Judite K.</span>
+              <span class="block text-graphite/60">há 10 meses</span>
+            </figcaption>
+          </figure>
+
+          <figure class="depo-card">
+            <div class="depo-nota">
+              <span class="flex gap-0.5 text-nude" role="img" aria-label="5 de 5 estrelas">
+                <svg class="h-4 w-4" aria-hidden="true"><use href="#i-star"></use></svg>
+                <svg class="h-4 w-4" aria-hidden="true"><use href="#i-star"></use></svg>
+                <svg class="h-4 w-4" aria-hidden="true"><use href="#i-star"></use></svg>
+                <svg class="h-4 w-4" aria-hidden="true"><use href="#i-star"></use></svg>
+                <svg class="h-4 w-4" aria-hidden="true"><use href="#i-star"></use></svg>
+              </span>
+              <span class="depo-nota-num">5,0</span>
+            </div>
+            <blockquote class="mt-5 flex-1 font-serif text-xl leading-snug text-viva">
+              “Salão maravilhoso, com atendimento excelente, lugar agradável e boa energia. Mais de 3 anos como cliente, amo demais esse lugar ❤️ A dona do salão é muito querida e atenciosa, e a Dani é a melhor manicure de todas.”
+            </blockquote>
+            <figcaption class="mt-6 border-t border-nude/25 pt-4 text-sm">
+              <span class="font-semibold text-graphite">Maria Vitória A.</span>
+              <span class="block text-graphite/60">Cliente há mais de 3 anos</span>
+            </figcaption>
+          </figure>
+
+          <figure class="depo-card">
+            <div class="depo-nota">
+              <span class="flex gap-0.5 text-nude" role="img" aria-label="5 de 5 estrelas">
+                <svg class="h-4 w-4" aria-hidden="true"><use href="#i-star"></use></svg>
+                <svg class="h-4 w-4" aria-hidden="true"><use href="#i-star"></use></svg>
+                <svg class="h-4 w-4" aria-hidden="true"><use href="#i-star"></use></svg>
+                <svg class="h-4 w-4" aria-hidden="true"><use href="#i-star"></use></svg>
+                <svg class="h-4 w-4" aria-hidden="true"><use href="#i-star"></use></svg>
+              </span>
+              <span class="depo-nota-num">5,0</span>
+            </div>
+            <blockquote class="mt-5 flex-1 font-serif text-xl leading-snug text-viva">
+              “Salão bonito, bem organizado. As meninas são simpáticas e fizeram minha unha bem feitinha. Oferecem outros serviços também, é interessante conhecer.”
+            </blockquote>
+            <figcaption class="mt-6 border-t border-nude/25 pt-4 text-sm">
+              <span class="font-semibold text-graphite">Maria Luiza H.</span>
+              <span class="block text-graphite/60">Local Guide · há 1 ano</span>
+            </figcaption>
+          </figure>
+
+          <figure class="depo-card">
+            <div class="depo-nota">
+              <span class="flex gap-0.5 text-nude" role="img" aria-label="5 de 5 estrelas">
+                <svg class="h-4 w-4" aria-hidden="true"><use href="#i-star"></use></svg>
+                <svg class="h-4 w-4" aria-hidden="true"><use href="#i-star"></use></svg>
+                <svg class="h-4 w-4" aria-hidden="true"><use href="#i-star"></use></svg>
+                <svg class="h-4 w-4" aria-hidden="true"><use href="#i-star"></use></svg>
+                <svg class="h-4 w-4" aria-hidden="true"><use href="#i-star"></use></svg>
+              </span>
+              <span class="depo-nota-num">5,0</span>
+            </div>
+            <blockquote class="mt-5 flex-1 font-serif text-xl leading-snug text-viva">
+              “Espaço incrível! Amo a manicure Dani.”
+            </blockquote>
+            <figcaption class="mt-6 border-t border-nude/25 pt-4 text-sm">
+              <span class="font-semibold text-graphite">Emily R.</span>
+              <span class="block text-graphite/60">há 10 meses</span>
+            </figcaption>
+          </figure>
+
+          <figure class="depo-card">
+            <div class="depo-nota">
+              <span class="flex gap-0.5 text-nude" role="img" aria-label="5 de 5 estrelas">
+                <svg class="h-4 w-4" aria-hidden="true"><use href="#i-star"></use></svg>
+                <svg class="h-4 w-4" aria-hidden="true"><use href="#i-star"></use></svg>
+                <svg class="h-4 w-4" aria-hidden="true"><use href="#i-star"></use></svg>
+                <svg class="h-4 w-4" aria-hidden="true"><use href="#i-star"></use></svg>
+                <svg class="h-4 w-4" aria-hidden="true"><use href="#i-star"></use></svg>
+              </span>
+              <span class="depo-nota-num">5,0</span>
+            </div>
+            <blockquote class="mt-5 flex-1 font-serif text-xl leading-snug text-viva">
+              “Um lugar aconchegante, animado. Às vezes a gente entra meio pra baixo e sai pra cima. Amei e amo!”
+            </blockquote>
+            <figcaption class="mt-6 border-t border-nude/25 pt-4 text-sm">
+              <span class="font-semibold text-graphite">Danielle Á.</span>
+              <span class="block text-graphite/60">há 2 anos</span>
+            </figcaption>
+          </figure>
+
+          <figure class="depo-card">
+            <div class="depo-nota">
+              <span class="flex gap-0.5 text-nude" role="img" aria-label="5 de 5 estrelas">
+                <svg class="h-4 w-4" aria-hidden="true"><use href="#i-star"></use></svg>
+                <svg class="h-4 w-4" aria-hidden="true"><use href="#i-star"></use></svg>
+                <svg class="h-4 w-4" aria-hidden="true"><use href="#i-star"></use></svg>
+                <svg class="h-4 w-4" aria-hidden="true"><use href="#i-star"></use></svg>
+                <svg class="h-4 w-4" aria-hidden="true"><use href="#i-star"></use></svg>
+              </span>
+              <span class="depo-nota-num">5,0</span>
+            </div>
+            <blockquote class="mt-5 flex-1 font-serif text-xl leading-snug text-viva">
+              “Tudo maravilhoso! São queridas demais!”
+            </blockquote>
+            <figcaption class="mt-6 border-t border-nude/25 pt-4 text-sm">
+              <span class="font-semibold text-graphite">Rejane C.</span>
+              <span class="block text-graphite/60">Local Guide · há 1 ano</span>
+            </figcaption>
+          </figure>
+
+          </div>
+        </div>
+
+        <div class="mt-10 text-center" data-reveal>
+          <a class="btn btn-wa w-full sm:w-auto"
+             href="https://wa.me/5567998097880?text=Oi!%20Vim%20pelo%20site%20e%20quero%20ser%20a%20próxima%20cliente%20feliz%20do%20Viva%20💛"
+             target="_blank" rel="noopener">
+            <svg class="h-5 w-5" aria-hidden="true"><use href="#i-whatsapp"></use></svg>
+            Quero ser a próxima
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================
+         9. LOCALIZAÇÃO & HORÁRIO
+         ========================================================== -->
+    <section id="localizacao" class="bg-mist py-20 md:py-28">
+      <div class="mx-auto grid max-w-content items-center gap-12 px-5 md:px-8 lg:grid-cols-2 lg:gap-16">
+
+        <div data-reveal>
+          <p class="eyebrow text-sage">Onde estamos</p>
+          <h2 class="mt-4 font-serif text-4xl font-semibold leading-tight text-viva md:text-5xl">
+            Vila Vilas Boas,<br />Campo Grande
+          </h2>
+
+          <ul class="mt-8 space-y-6">
+            <li class="flex gap-4">
+              <span class="icon-badge shrink-0"><svg class="h-5 w-5" aria-hidden="true"><use href="#i-pin"></use></svg></span>
+              <div>
+                <h3 class="text-sm font-semibold uppercase tracking-wider text-graphite/60">Endereço</h3>
+                <address class="mt-1 not-italic leading-relaxed text-graphite">
+                  Av. Três Barras, 1733 — Vila Vilas Boas<br />
+                  Campo Grande/MS · CEP 79051-290
+                </address>
+              </div>
+            </li>
+            <li class="flex gap-4">
+              <span class="icon-badge shrink-0"><svg class="h-5 w-5" aria-hidden="true"><use href="#i-clock"></use></svg></span>
+              <div>
+                <h3 class="text-sm font-semibold uppercase tracking-wider text-graphite/60">Horário</h3>
+                <p class="mt-1 leading-relaxed text-graphite">
+                  <strong class="font-semibold">Segunda a sexta:</strong> 08:00 às 18:00<br />
+                  <strong class="font-semibold">Sábado:</strong> 08:00 às 14:00<br />
+                  <span class="text-graphite/70">Atendemos com hora marcada.</span>
+                </p>
+              </div>
+            </li>
+            <li class="flex gap-4">
+              <span class="icon-badge shrink-0"><svg class="h-5 w-5" aria-hidden="true"><use href="#i-phone"></use></svg></span>
+              <div>
+                <h3 class="text-sm font-semibold uppercase tracking-wider text-graphite/60">Telefone</h3>
+                <p class="mt-1">
+                  <a href="tel:+5567998097880" class="text-lg font-medium text-viva underline decoration-nude/60 underline-offset-4 transition hover:text-sage">
+                    (67) 99809-7880
+                  </a>
+                </p>
+              </div>
+            </li>
+          </ul>
+
+          <div class="mt-9 flex flex-col gap-3 sm:flex-row">
+            <a class="btn btn-viva w-full sm:w-auto"
+               href="https://www.google.com/maps/dir/?api=1&destination=Av.+Tr%C3%AAs+Barras%2C+1733+-+Vila+Vilas+Boas%2C+Campo+Grande+-+MS%2C+79051-290"
+               target="_blank" rel="noopener">
+              <svg class="h-5 w-5" aria-hidden="true"><use href="#i-navigation"></use></svg>
+              Como chegar
+            </a>
+            <a class="btn btn-wa w-full sm:w-auto"
+               href="https://wa.me/5567998097880?text=Oi!%20Vim%20pelo%20site,%20vi%20o%20endereço%20e%20quero%20agendar%20um%20horário%20💅"
+               target="_blank" rel="noopener">
+              <svg class="h-5 w-5" aria-hidden="true"><use href="#i-whatsapp"></use></svg>
+              Agendar horário
+            </a>
+          </div>
+        </div>
+
+        <!-- Mapa incorporado (sem chave de API) -->
+        <div data-reveal>
+          <div class="overflow-hidden rounded-[18px] border border-nude/40 shadow-soft">
+            <iframe
+              title="Mapa com a localização do Viva Espaço de Beleza — Av. Três Barras, 1733, Campo Grande/MS"
+              src="https://www.google.com/maps?q=Av.%20Tr%C3%AAs%20Barras%2C%201733%20-%20Vila%20Vilas%20Boas%2C%20Campo%20Grande%20-%20MS%2C%2079051-290&output=embed"
+              width="100%" height="420" style="border:0" loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================
+         10. FAQ — acordeão
+         ========================================================== -->
+    <section id="faq" class="bg-cream py-20 md:py-28">
+      <div class="mx-auto max-w-3xl px-5 md:px-8">
+
+        <header class="text-center" data-reveal>
+          <p class="eyebrow text-nude">Dúvidas frequentes</p>
+          <h2 class="mt-4 font-serif text-4xl font-semibold leading-tight text-viva md:text-5xl">
+            Antes de agendar
+          </h2>
+        </header>
+
+        <div class="mt-12 divide-y divide-nude/25 border-y border-nude/25" data-reveal>
+
+          <div class="faq-item" data-open="false">
+            <h3>
+              <button type="button" class="faq-trigger" aria-expanded="false" aria-controls="faq-preco" id="faq-b-preco">
+                <span>Quanto custa?</span>
+                <svg class="faq-chevron h-5 w-5 text-nude" aria-hidden="true"><use href="#i-chevron"></use></svg>
+              </button>
+            </h3>
+            <div class="faq-panel" id="faq-preco" role="region" aria-labelledby="faq-b-preco">
+              <div class="faq-panel-inner">
+                Os valores mudam conforme o comprimento do cabelo e o tipo de unha. Manda uma mensagem
+                contando o que você quer fazer que a gente te passa o preço exato na hora — sem compromisso.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" data-open="false">
+            <h3>
+              <button type="button" class="faq-trigger" aria-expanded="false" aria-controls="faq-tempo" id="faq-b-tempo">
+                <span>Quanto tempo demora?</span>
+                <svg class="faq-chevron h-5 w-5 text-nude" aria-hidden="true"><use href="#i-chevron"></use></svg>
+              </button>
+            </h3>
+            <div class="faq-panel" id="faq-tempo" role="region" aria-labelledby="faq-b-tempo">
+              <div class="faq-panel-inner">
+                <!-- MELHORAR: troque por tempos reais assim que confirmar, ex.:
+                     "Manicure e pedicure levam cerca de 1h, escova de 40min a 1h e alongamento em gel cerca de 2h." -->
+                Depende do serviço e do comprimento do cabelo. Quando você agendar, a gente já te diz
+                quanto tempo reservar, para o horário caber tranquilo no seu dia.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" data-open="false">
+            <h3>
+              <button type="button" class="faq-trigger" aria-expanded="false" aria-controls="faq-p1" id="faq-b1">
+                <span>Preciso agendar ou aceitam encaixe?</span>
+                <svg class="faq-chevron h-5 w-5 text-nude" aria-hidden="true"><use href="#i-chevron"></use></svg>
+              </button>
+            </h3>
+            <div class="faq-panel" id="faq-p1" role="region" aria-labelledby="faq-b1">
+              <div class="faq-panel-inner">
+                O ideal é agendar pelo WhatsApp para garantir seu horário, mas sempre que dá a gente tenta encaixar.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" data-open="false">
+            <h3>
+              <button type="button" class="faq-trigger" aria-expanded="false" aria-controls="faq-p2" id="faq-b2">
+                <span>Os materiais são higienizados?</span>
+                <svg class="faq-chevron h-5 w-5 text-nude" aria-hidden="true"><use href="#i-chevron"></use></svg>
+              </button>
+            </h3>
+            <div class="faq-panel" id="faq-p2" role="region" aria-labelledby="faq-b2">
+              <div class="faq-panel-inner">
+                Sim. Prezamos pela higiene e pelo seu cuidado em todos os atendimentos.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" data-open="false">
+            <h3>
+              <button type="button" class="faq-trigger" aria-expanded="false" aria-controls="faq-p3" id="faq-b3">
+                <span>Quais serviços vocês oferecem?</span>
+                <svg class="faq-chevron h-5 w-5 text-nude" aria-hidden="true"><use href="#i-chevron"></use></svg>
+              </button>
+            </h3>
+            <div class="faq-panel" id="faq-p3" role="region" aria-labelledby="faq-b3">
+              <div class="faq-panel-inner">
+                Manicure e pedicure, cabelo, unhas em gel e alongamento, além de toda a experiência de bem-estar.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" data-open="false">
+            <h3>
+              <button type="button" class="faq-trigger" aria-expanded="false" aria-controls="faq-p4" id="faq-b4">
+                <span>Formas de pagamento?</span>
+                <svg class="faq-chevron h-5 w-5 text-nude" aria-hidden="true"><use href="#i-chevron"></use></svg>
+              </button>
+            </h3>
+            <div class="faq-panel" id="faq-p4" role="region" aria-labelledby="faq-b4">
+              <div class="faq-panel-inner">
+                Pix e cartão, débito ou crédito.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" data-open="false">
+            <h3>
+              <button type="button" class="faq-trigger" aria-expanded="false" aria-controls="faq-p5" id="faq-b5">
+                <span>Precisei remarcar?</span>
+                <svg class="faq-chevron h-5 w-5 text-nude" aria-hidden="true"><use href="#i-chevron"></use></svg>
+              </button>
+            </h3>
+            <div class="faq-panel" id="faq-p5" role="region" aria-labelledby="faq-b5">
+              <div class="faq-panel-inner">
+                Sem problema. É só avisar pelo WhatsApp com antecedência e a gente reorganiza.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" data-open="false">
+            <h3>
+              <button type="button" class="faq-trigger" aria-expanded="false" aria-controls="faq-p6" id="faq-b6">
+                <span>Onde ficam?</span>
+                <svg class="faq-chevron h-5 w-5 text-nude" aria-hidden="true"><use href="#i-chevron"></use></svg>
+              </button>
+            </h3>
+            <div class="faq-panel" id="faq-p6" role="region" aria-labelledby="faq-b6">
+              <div class="faq-panel-inner">
+                Av. Três Barras, 1733 — Vila Vilas Boas, Campo Grande/MS. O mapa está aqui na página.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-10 text-center" data-reveal>
+          <p class="text-[15px] text-graphite/75">Ficou com outra dúvida? A gente responde rapidinho.</p>
+          <a class="btn btn-wa mt-5 w-full sm:w-auto"
+             href="https://wa.me/5567998097880?text=Oi!%20Vim%20pelo%20site%20e%20tenho%20uma%20dúvida%20antes%20de%20agendar"
+             target="_blank" rel="noopener">
+            <svg class="h-5 w-5" aria-hidden="true"><use href="#i-whatsapp"></use></svg>
+            Tirar minha dúvida
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================
+         11. CTA FINAL — fundo verde
+         ========================================================== -->
+    <section id="agendar" class="relative overflow-hidden bg-viva py-20 md:py-28">
+      <svg class="pointer-events-none absolute -right-10 -bottom-16 h-72 w-72 text-nude/10" aria-hidden="true">
+        <use href="#i-leaf"></use>
+      </svg>
+
+      <div class="mx-auto max-w-3xl px-5 text-center md:px-8" data-reveal>
+        <span class="mx-auto block h-px w-16 bg-nude/60" aria-hidden="true"></span>
+        <h2 class="mt-8 font-serif text-4xl font-semibold leading-tight text-cream md:text-6xl">
+          Seu momento de se cuidar<br class="hidden sm:block" /> começa com uma mensagem.
+        </h2>
+        <p class="mx-auto mt-6 max-w-xl text-[15px] leading-relaxed text-cream/80 md:text-base">
+          Manda um oi no WhatsApp, conta o que você quer fazer e a gente reserva seu horário.
+          Simples assim.
+        </p>
+        <a class="btn btn-wa mt-9 w-full !min-h-[56px] !px-8 text-base sm:w-auto"
+           href="https://wa.me/5567998097880?text=Oi!%20Vim%20pelo%20site%20e%20quero%20agendar%20meu%20horário%20no%20Viva%20💛"
+           target="_blank" rel="noopener">
+          <svg class="h-6 w-6" aria-hidden="true"><use href="#i-whatsapp"></use></svg>
+          Agendar agora no WhatsApp
+        </a>
+        <p class="mt-5 text-sm text-cream/60">Respondemos em horário comercial · (67) 99809-7880</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================
+       12. RODAPÉ
+       ========================================================== -->
+  <footer class="bg-[#24413E] py-14 text-cream/80 md:py-16">
+    <div class="mx-auto max-w-content px-5 md:px-8">
+      <div class="grid gap-10 md:grid-cols-3 md:gap-8">
+
+        <!-- Marca -->
+        <div>
+          <div class="flex items-center gap-3">
+            <img src="assets/img/logo-viva.jpg" alt="Logo Viva Espaço de Beleza" width="200" height="200"
+                 class="h-12 w-12 rounded-xl object-cover ring-1 ring-nude/40" loading="lazy" />
+            <span class="leading-tight">
+              <span class="block font-serif text-2xl text-cream">Viva</span>
+              <span class="block text-[10px] uppercase tracking-[0.22em] text-nude">Espaço de Beleza</span>
+            </span>
+          </div>
+          <p class="mt-5 max-w-xs text-sm leading-relaxed">
+            Um salão onde o cuidado vem antes de tudo. Todas as pessoas são bem-vindas.
+          </p>
+          <div class="mt-5 inline-flex items-center gap-2 rounded-full border border-nude/30 px-3 py-1.5 text-xs">
+            <svg class="h-3.5 w-3.5 text-nude" aria-hidden="true"><use href="#i-star"></use></svg>
+            <span><strong class="font-semibold text-cream">4,7</strong> no Google · 16 avaliações</span>
+          </div>
+        </div>
+
+        <!-- Contato -->
+        <div>
+          <h2 class="text-sm font-semibold uppercase tracking-wider text-nude">Contato</h2>
+          <ul class="mt-5 space-y-3 text-sm">
+            <li>
+              <a class="inline-flex items-center gap-2.5 transition hover:text-cream"
+                 href="https://wa.me/5567998097880?text=Oi!%20Vim%20pelo%20site%20e%20quero%20falar%20com%20o%20Viva%20💛"
+                 target="_blank" rel="noopener">
+                <svg class="h-4 w-4 text-nude" aria-hidden="true"><use href="#i-whatsapp"></use></svg>
+                WhatsApp (67) 99809-7880
+              </a>
+            </li>
+            <li>
+              <a class="inline-flex items-center gap-2.5 transition hover:text-cream" href="tel:+5567998097880">
+                <svg class="h-4 w-4 text-nude" aria-hidden="true"><use href="#i-phone"></use></svg>
+                Ligar agora
+              </a>
+            </li>
+            <li>
+              <a class="inline-flex items-center gap-2.5 transition hover:text-cream"
+                 href="https://www.instagram.com/vivaespacodebeleza.cg/" target="_blank" rel="noopener">
+                <svg class="h-4 w-4 text-nude" aria-hidden="true"><use href="#i-instagram"></use></svg>
+                Instagram
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Endereço e horário -->
+        <div>
+          <h2 class="text-sm font-semibold uppercase tracking-wider text-nude">Onde estamos</h2>
+          <address class="mt-5 space-y-3 text-sm not-italic">
+            <p class="flex gap-2.5">
+              <svg class="mt-0.5 h-4 w-4 shrink-0 text-nude" aria-hidden="true"><use href="#i-pin"></use></svg>
+              <span>Av. Três Barras, 1733 — Vila Vilas Boas<br />Campo Grande/MS · 79051-290</span>
+            </p>
+            <p class="flex gap-2.5">
+              <svg class="mt-0.5 h-4 w-4 shrink-0 text-nude" aria-hidden="true"><use href="#i-clock"></use></svg>
+              <span>Seg a sex: 08:00–18:00<br />Sábado: 08:00–14:00</span>
+            </p>
+          </address>
+        </div>
+      </div>
+
+      <div class="mt-12 flex flex-col gap-2 border-t border-cream/10 pt-6 text-xs text-cream/50 sm:flex-row sm:items-center sm:justify-between">
+        <p>© <span id="ano"></span> Viva Espaço de Beleza. Todos os direitos reservados.</p>
+        <p>Feito com carinho para quem cuida de gente.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================
+       BOTÃO FLUTUANTE DE WHATSAPP (visível em toda a página)
+       ========================================================== -->
+  <a id="wa-fab" class="wa-fab"
+     href="https://wa.me/5567998097880?text=Oi!%20Vim%20pelo%20site%20e%20quero%20agendar%20meu%20horário%20💅"
+     target="_blank" rel="noopener" aria-label="Agendar pelo WhatsApp">
+    <svg class="relative h-8 w-8" aria-hidden="true"><use href="#i-whatsapp"></use></svg>
+  </a>
+
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>

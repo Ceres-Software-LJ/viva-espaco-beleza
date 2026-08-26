@@ -1,0 +1,19 @@
+# Masters de vídeo — pesados demais para o Git (22 MB).
+# Guarde uma cópia no Drive; eles não são necessários para o site.
+_fontes/*.mp4
+
+# Saída do build opcional do Tailwind (gerada por comando, não versionada)
+assets/css/tailwind.css
+node_modules/
+package-lock.json
+
+# Sistema / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+*.stackdump
+.vscode/
+.idea/
+
+# Vercel
+.vercel

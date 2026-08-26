@@ -1,0 +1,7 @@
+# Fontes originais: ficam no Git, mas não vão para o CDN
+_fontes/
+
+# Arquivos do build opcional do Tailwind
+src/
+tailwind.config.js
+README.md
