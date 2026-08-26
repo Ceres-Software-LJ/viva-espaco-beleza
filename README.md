@@ -194,17 +194,23 @@ Tudo para frente — **sem reverso**. A primeira versão usava vai-e-volta de um
 
 | Contexto | O que carrega | Peso |
 |---|---|---|
-| Desktop, conexão boa | `hero-loop.webm` (ou `.mp4`) | 618 KB |
-| Celular (< 768px) | Só o poster | 64 KB |
-| `saveData` / rede 2G | Só o poster | 64 KB |
-| `prefers-reduced-motion` | Só o poster | 64 KB |
+| Desktop | `hero-loop.webm` 1280×720 | 443 KB |
+| Celular (< 768px) | `hero-loop-mobile.webm` 405×720 | 170 KB |
+| `saveData` / rede 2G | Só o poster | 37 KB |
+| `prefers-reduced-motion` | Só o poster | 37 KB |
 
-O `<video>` **não tem `src` no HTML** — o `initHeroVideo()` em `main.js` injeta as fontes só quando
-as condições permitem, e pausa o vídeo quando o hero sai da tela. O `poster` cobre todos os
-outros casos, então o LCP continua sendo uma imagem de 64 KB.
+O `<video>` **não tem `src` no HTML** — o `initHeroVideo()` mede a largura da tela e injeta as
+fontes do tamanho certo, e pausa o vídeo quando o hero sai da tela. O `poster` cobre os casos
+em que nada é baixado, então o LCP continua sendo uma imagem de 37 KB.
 
-Contraste verificado sobre o vídeo real: texto creme **7,45:1** (AA e AAA).
-O nude padrão dava 3,59:1 no eyebrow, então ele usa um nude mais claro (`#E0C6A6`) só no hero.
+A versão mobile é um recorte 9:16 em 58% da largura — o ponto que mantém pincel e unha em quadro
+nos dois clipes da montagem. Como o véu verde cobre ~75% no celular, ela é comprimida bem mais
+forte (CRF 44) sem diferença perceptível.
+
+**Contraste verificado sobre a cor média real do vídeo**, no quadro mais claro: texto creme em
+7,2:1 e nude claro em 4,9:1 — os dois acima do mínimo AA. Foi essa medição que permitiu baixar
+o véu de 88% para 72% no mobile, deixando o vídeo aparecer de verdade em vez de virar um fundo
+verde quase liso.
 
 ### Refazer a montagem com outros clipes
 

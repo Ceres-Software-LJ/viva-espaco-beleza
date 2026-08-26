@@ -279,18 +279,21 @@
 
       <!-- ==========================================================
            Fundo do hero
-           Desktop: vídeo em loop (a unha sendo pintada).
-           Mobile / conexão lenta / prefers-reduced-motion:
-           só o poster, sem baixar vídeo nenhum.
-           O <video> não tem src no HTML — o main.js injeta as fontes
-           quando as condições permitem (initHeroVideo).
+           Roda em todas as telas, com arquivo próprio para cada uma:
+             desktop 1280x720 (443 KB)  ·  mobile 405x720 recortado (157 KB)
+           Só não carrega em conexão lenta, economia de dados ou
+           prefers-reduced-motion — aí fica o poster de 37 KB.
+           O <video> não tem src no HTML: o main.js escolhe e injeta
+           as fontes certas (initHeroVideo).
            ========================================================== -->
       <video id="hero-video" class="hero-midia"
              poster="assets/img/hero-loop-poster.jpg"
-             muted loop playsinline preload="none" disablepictureinpicture
+             autoplay muted loop playsinline preload="none" disablepictureinpicture
              aria-hidden="true" tabindex="-1"
              data-webm="assets/img/hero-loop.webm"
-             data-mp4="assets/img/hero-loop.mp4"></video>
+             data-mp4="assets/img/hero-loop.mp4"
+             data-webm-mobile="assets/img/hero-loop-mobile.webm"
+             data-mp4-mobile="assets/img/hero-loop-mobile.mp4"></video>
 
       <!-- Véu verde: garante o contraste do texto sobre o vídeo -->
       <div class="hero-veu" aria-hidden="true"></div>

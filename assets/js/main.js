@@ -159,14 +159,13 @@
      boa e sem preferência por movimento reduzido. Fora disso, fica
      o poster (já definido no HTML) e nenhum byte é gasto.
      ------------------------------------------------- */
-  var VIDEO_MIN_WIDTH = 768;
+  var VIDEO_LARGURA_MOBILE = 768;
 
   function initHeroVideo() {
     var video = document.getElementById('hero-video');
     if (!video) return;
 
     if (REDUCED_MOTION) return;
-    if (window.innerWidth < VIDEO_MIN_WIDTH) return;
 
     // Respeita economia de dados e conexões lentas
     var conexao = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
@@ -175,8 +174,12 @@
       if (/(^|-)(2g|slow-2g)$/.test(conexao.effectiveType || '')) return;
     }
 
-    adicionarFonte(video, video.dataset.webm, 'video/webm');
-    adicionarFonte(video, video.dataset.mp4, 'video/mp4');
+    // Cada tela recebe o arquivo do tamanho certo
+    var mobile = window.innerWidth < VIDEO_LARGURA_MOBILE;
+    var dados = video.dataset;
+
+    adicionarFonte(video, mobile ? dados.webmMobile : dados.webm, 'video/webm');
+    adicionarFonte(video, mobile ? dados.mp4Mobile : dados.mp4, 'video/mp4');
     video.load();
 
     // Alguns navegadores recusam autoplay; o poster segue no lugar
