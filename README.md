@@ -46,10 +46,56 @@ Depois abra `http://localhost:3000` (serve) ou `http://localhost:5500` (Python).
 
 ---
 
-## 🚀 Como publicar
+## 🚀 Deploy
 
-| Onde | Como |
+O projeto vive em **github.com/Ceres-Software-LJ/viva-espaco-beleza** e é publicado pela Vercel.
+É site 100% estático: **não há build**, a Vercel só serve os arquivos.
+
+### Primeira publicação
+
+1. Em [vercel.com/new](https://vercel.com/new), importe o repositório pela organização
+2. **Framework Preset:** `Other` · **Build Command:** deixe vazio · **Output Directory:** `.`
+3. Deploy
+
+A partir daí, todo push na `main` republica sozinho.
+
+### Configuração incluída
+
+| Arquivo | Para quê |
 |---|---|
+| `vercel.json` | Cache de 1 dia + `stale-while-revalidate` em `/assets`, e headers de segurança |
+| `.vercelignore` | Mantém `_fontes/`, `src/` e o README fora do CDN |
+| `.gitignore` | Barra os masters de vídeo (22 MB) e saídas de build |
+
+> O cache de `/assets` é deliberadamente **1 dia, não `immutable`**. Os nomes dos arquivos não têm
+> hash, então quando você trocar uma foto ou o vídeo mantendo o mesmo nome, a mudança aparece em
+> no máximo 24h em vez de ficar presa por um ano no navegador de quem já visitou.
+
+### ⚠️ Confira a URL depois do primeiro deploy
+
+O `canonical`, as tags Open Graph e o JSON-LD estão apontando para
+`https://viva-espaco-beleza.vercel.app` — o endereço que a Vercel gera a partir do nome do repo.
+
+**Se a URL real for diferente**, ou quando você apontar um domínio próprio, troque em um comando:
+
+```bash
+sed -i 's|https://viva-espaco-beleza.vercel.app|https://SEU-ENDERECO-REAL|g' index.html
+```
+
+Isso não é cosmético: o `canonical` diz ao Google qual é a página oficial, e o `og:image` é a
+prévia que aparece quando o link é enviado no WhatsApp — que é o canal de conversão da página.
+
+### Os masters de vídeo
+
+Os três clipes originais do Veo (22 MB) estão em `_fontes/` **fora do Git**, de propósito: em
+repositório eles tornariam todo clone lento para sempre. **Guarde uma cópia no Drive** — sem eles
+não dá para regerar o loop do hero com outro corte.
+
+As fotos originais, essas sim estão versionadas (são leves e você precisa delas para recortar de novo).
+
+---
+
+---|
 | **Netlify** | Acesse [app.netlify.com/drop](https://app.netlify.com/drop) e arraste a pasta inteira. Sai no ar em segundos. |
 | **Vercel** | `npx vercel` na pasta, ou suba num repositório Git e importe em vercel.com (sem configuração — é site estático). |
 | **GitHub Pages** | Suba os arquivos num repositório → *Settings → Pages → Deploy from branch → main / (root)*. |
