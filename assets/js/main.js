@@ -155,9 +155,16 @@
   }
 
   /* ---------- 5b. Vídeo de fundo do hero ----------
-     O vídeo só é baixado quando vale a pena: tela grande, conexão
-     boa e sem preferência por movimento reduzido. Fora disso, fica
-     o poster (já definido no HTML) e nenhum byte é gasto.
+     Roda em todas as telas, com o arquivo do tamanho certo para cada
+     uma. Só não baixa em conexão lenta, economia de dados ou
+     prefers-reduced-motion — nesses casos fica o poster do HTML.
+
+     Três armadilhas do iOS tratadas aqui:
+       1. preload="none" trava o autoplay; libera para "auto" antes do load()
+       2. Safari diz "maybe" para WebM e pode falhar na decodificação sem
+          cair para o MP4, então o WebM só entra com resposta "probably"
+       3. Modo de Baixo Consumo recusa o play(); nesse caso tentamos de
+          novo no primeiro toque do visitante
      ------------------------------------------------- */
   var VIDEO_LARGURA_MOBILE = 768;
 
@@ -178,13 +185,30 @@
     var mobile = window.innerWidth < VIDEO_LARGURA_MOBILE;
     var dados = video.dataset;
 
-    adicionarFonte(video, mobile ? dados.webmMobile : dados.webm, 'video/webm');
+    // WebM só quando o navegador GARANTE que toca ("probably").
+    // O Safari responde "maybe" e às vezes falha na decodificação — se ele
+    // for o primeiro <source>, o vídeo não roda e nem cai para o MP4.
+    if (video.canPlayType('video/webm; codecs="vp9"') === 'probably') {
+      adicionarFonte(video, mobile ? dados.webmMobile : dados.webm, 'video/webm');
+    }
     adicionarFonte(video, mobile ? dados.mp4Mobile : dados.mp4, 'video/mp4');
+
+    // preload="none" impede o iOS de carregar dados suficientes para o
+    // autoplay disparar; load() sozinho não resolve. Tem que liberar antes.
+    video.preload = 'auto';
+
+    // O Safari confere a propriedade, não só o atributo
+    video.muted = true;
+    video.playsInline = true;
+
     video.load();
 
-    // Alguns navegadores recusam autoplay; o poster segue no lugar
-    var promessa = video.play();
-    if (promessa && promessa.catch) promessa.catch(function () {});
+    // Tocar só depois de haver quadro decodificado evita corrida com o load()
+    if (video.readyState >= 2) {
+      tocar(video);
+    } else {
+      video.addEventListener('loadeddata', function () { tocar(video); }, { once: true });
+    }
 
     pausarForaDaTela(video);
   }
@@ -195,6 +219,22 @@
     fonte.src = url;
     fonte.type = tipo;
     video.appendChild(fonte);
+  }
+
+  function tocar(video) {
+    var promessa = video.play();
+    if (!promessa || !promessa.catch) return;
+
+    promessa.catch(function () {
+      // Autoplay recusado (Modo de Baixo Consumo do iOS, por exemplo).
+      // Fica o poster e tentamos de novo no primeiro toque do visitante.
+      function retentar() {
+        var p = video.play();
+        if (p && p.catch) p.catch(function () {});
+      }
+      document.addEventListener('touchstart', retentar, { once: true, passive: true });
+      document.addEventListener('click', retentar, { once: true });
+    });
   }
 
   // Economiza bateria quando o hero sai da tela
