@@ -17,7 +17,7 @@ module.exports = {
         whats:    '#25D366'  // verde WhatsApp (exclusivo dos botões)
       },
       fontFamily: {
-        serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+        serif: ['"Cormorant Garamond"', '"Cormorant Fallback"', 'Georgia', 'serif'],
         sans:  ['Montserrat', 'system-ui', '-apple-system', 'sans-serif']
       },
       boxShadow: {
