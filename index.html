@@ -56,57 +56,296 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "BeautySalon",
-    "name": "Viva Espaço de Beleza",
-    "description": "Salão de beleza em Campo Grande/MS: manicure e pedicure, cabelo (escova e tratamentos), unhas em gel e alongamento.",
-    "image": "https://viva-espaco-beleza.vercel.app/assets/img/og-viva.jpg",
-    "logo": "https://viva-espaco-beleza.vercel.app/assets/img/logo-viva.jpg",
-    "url": "https://viva-espaco-beleza.vercel.app/",
-    "telephone": "+5567998097880",
-    "priceRange": "$$",
-    "currenciesAccepted": "BRL",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Av. Três Barras, 1733",
-      "addressLocality": "Campo Grande",
-      "addressRegion": "MS",
-      "postalCode": "79051-290",
-      "addressCountry": "BR"
-    },
-    "areaServed": { "@type": "City", "name": "Campo Grande" },
-    "openingHoursSpecification": [
+    "@graph": [
       {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
-        "opens": "08:00",
-        "closes": "18:00"
+        "@type": "WebSite",
+        "@id": "https://viva-espaco-beleza.vercel.app/#site",
+        "url": "https://viva-espaco-beleza.vercel.app/",
+        "name": "Viva Espaço de Beleza",
+        "inLanguage": "pt-BR",
+        "publisher": {
+          "@id": "https://viva-espaco-beleza.vercel.app/#salao"
+        }
       },
       {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": "Saturday",
-        "opens": "08:00",
-        "closes": "14:00"
+        "@type": "WebPage",
+        "@id": "https://viva-espaco-beleza.vercel.app/#pagina",
+        "url": "https://viva-espaco-beleza.vercel.app/",
+        "name": "Viva Espaço de Beleza | Manicure e Cabelo em Campo Grande",
+        "isPartOf": {
+          "@id": "https://viva-espaco-beleza.vercel.app/#site"
+        },
+        "about": {
+          "@id": "https://viva-espaco-beleza.vercel.app/#salao"
+        },
+        "primaryImageOfPage": {
+          "@id": "https://viva-espaco-beleza.vercel.app/#imagem"
+        },
+        "inLanguage": "pt-BR"
+      },
+      {
+        "@type": "ImageObject",
+        "@id": "https://viva-espaco-beleza.vercel.app/#imagem",
+        "url": "https://viva-espaco-beleza.vercel.app/assets/img/og-viva.jpg",
+        "width": 1200,
+        "height": 630,
+        "caption": "Cliente do Viva Espaço de Beleza com o cabelo escovado e finalizado"
+      },
+      {
+        "@type": "BeautySalon",
+        "@id": "https://viva-espaco-beleza.vercel.app/#salao",
+        "name": "Viva Espaço de Beleza",
+        "alternateName": "Viva Espaço de Beleza Campo Grande",
+        "description": "Salão de beleza em Campo Grande/MS: manicure e pedicure, cabelo (escova e tratamentos), unhas em gel e alongamento.",
+        "slogan": "Beleza com cuidado de verdade",
+        "url": "https://viva-espaco-beleza.vercel.app/",
+        "logo": "https://viva-espaco-beleza.vercel.app/assets/img/logo-viva.jpg",
+        "image": [
+          "https://viva-espaco-beleza.vercel.app/assets/img/og-viva.jpg",
+          "https://viva-espaco-beleza.vercel.app/assets/img/unhas.jpg",
+          "https://viva-espaco-beleza.vercel.app/assets/img/hero-loop-poster.jpg"
+        ],
+        "telephone": "+5567998097880",
+        "priceRange": "$$",
+        "currenciesAccepted": "BRL",
+        "paymentAccepted": "Pix, Cartão de crédito, Cartão de débito",
+        "knowsLanguage": "pt-BR",
+        "publicAccess": true,
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Av. Três Barras, 1733",
+          "addressLocality": "Campo Grande",
+          "addressRegion": "MS",
+          "postalCode": "79051-290",
+          "addressCountry": "BR"
+        },
+        "areaServed": [
+          {
+            "@type": "City",
+            "name": "Campo Grande",
+            "addressRegion": "MS",
+            "addressCountry": "BR"
+          },
+          {
+            "@type": "Place",
+            "name": "Vila Vilas Boas"
+          }
+        ],
+        "hasMap": "https://www.google.com/maps/search/?api=1&query=Av.+Tr%C3%AAs+Barras%2C+1733+-+Vila+Vilas+Boas%2C+Campo+Grande+-+MS%2C+79051-290",
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday"
+            ],
+            "opens": "08:00",
+            "closes": "18:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": "Saturday",
+            "opens": "08:00",
+            "closes": "14:00"
+          }
+        ],
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.7",
+          "reviewCount": "16",
+          "bestRating": "5"
+        },
+        "sameAs": [
+          "https://www.instagram.com/vivaespacodebeleza.cg/",
+          "https://www.facebook.com/vivaespacodebeleza.cg/"
+        ],
+        "makesOffer": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Manicure e pedicure",
+              "description": "Esmaltação tradicional ou em gel, com capricho no acabamento.",
+              "serviceType": "Manicure e pedicure",
+              "provider": {
+                "@id": "https://viva-espaco-beleza.vercel.app/#salao"
+              },
+              "areaServed": {
+                "@type": "City",
+                "name": "Campo Grande"
+              }
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Escova e tratamentos capilares",
+              "description": "Escova modeladora, hidratação e tratamentos para cabelo saudável e com brilho.",
+              "serviceType": "Escova e tratamentos capilares",
+              "provider": {
+                "@id": "https://viva-espaco-beleza.vercel.app/#salao"
+              },
+              "areaServed": {
+                "@type": "City",
+                "name": "Campo Grande"
+              }
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Unhas em gel e alongamento",
+              "description": "Alongamento e nail art, para unhas resistentes e personalizadas.",
+              "serviceType": "Unhas em gel e alongamento",
+              "provider": {
+                "@id": "https://viva-espaco-beleza.vercel.app/#salao"
+              },
+              "areaServed": {
+                "@type": "City",
+                "name": "Campo Grande"
+              }
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Cuidados e bem-estar",
+              "description": "Recepção acolhedora, massagem no lavatório e atendimento personalizado.",
+              "serviceType": "Cuidados e bem-estar",
+              "provider": {
+                "@id": "https://viva-espaco-beleza.vercel.app/#salao"
+              },
+              "areaServed": {
+                "@type": "City",
+                "name": "Campo Grande"
+              }
+            }
+          }
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Serviços",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Manicure e pedicure"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Escova e tratamentos capilares"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Unhas em gel e alongamento"
+              }
+            }
+          ]
+        },
+        "potentialAction": {
+          "@type": "ReserveAction",
+          "name": "Agendar horário pelo WhatsApp",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://wa.me/5567998097880",
+            "actionPlatform": [
+              "http://schema.org/DesktopWebPlatform",
+              "http://schema.org/MobileWebPlatform"
+            ]
+          }
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://viva-espaco-beleza.vercel.app/#faq",
+        "inLanguage": "pt-BR",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Quanto custa?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Os valores mudam conforme o comprimento do cabelo e o tipo de unha. Manda uma mensagem contando o que você quer fazer que a gente te passa o preço exato na hora — sem compromisso."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quanto tempo demora?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Depende do serviço e do comprimento do cabelo. Quando você agendar, a gente já te diz quanto tempo reservar, para o horário caber tranquilo no seu dia."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Preciso agendar ou aceitam encaixe?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "O ideal é agendar pelo WhatsApp para garantir seu horário, mas sempre que dá a gente tenta encaixar."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Os materiais são higienizados?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sim. Prezamos pela higiene e pelo seu cuidado em todos os atendimentos."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quais serviços o Viva oferece?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Manicure e pedicure, cabelo, unhas em gel e alongamento, além de toda a experiência de bem-estar."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quais as formas de pagamento?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Pix e cartão, débito ou crédito."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Posso remarcar meu horário?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sem problema. É só avisar pelo WhatsApp com antecedência e a gente reorganiza."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Onde fica o salão?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Av. Três Barras, 1733 — Vila Vilas Boas, Campo Grande/MS. O mapa está aqui na página."
+            }
+          }
+        ],
+        "about": {
+          "@id": "https://viva-espaco-beleza.vercel.app/#salao"
+        },
+        "isPartOf": {
+          "@id": "https://viva-espaco-beleza.vercel.app/#pagina"
+        }
       }
-    ],
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.7",
-      "reviewCount": "16",
-      "bestRating": "5"
-    },
-    "sameAs": [
-      "https://www.instagram.com/vivaespacodebeleza.cg/",
-      "https://www.facebook.com/vivaespacodebeleza.cg/"
-    ],
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "Serviços",
-      "itemListElement": [
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Manicure e pedicure" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Escova e tratamentos capilares" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Unhas em gel e alongamento" } }
-      ]
-    }
+    ]
   }
   </script>
 </head>
@@ -1008,7 +1247,7 @@
           <div class="faq-item" data-open="false">
             <h3>
               <button type="button" class="faq-trigger" aria-expanded="false" aria-controls="faq-p3" id="faq-b3">
-                <span>Quais serviços vocês oferecem?</span>
+                <span>Quais serviços o Viva oferece?</span>
                 <svg class="faq-chevron h-5 w-5 text-nude" aria-hidden="true"><use href="#i-chevron"></use></svg>
               </button>
             </h3>
@@ -1022,7 +1261,7 @@
           <div class="faq-item" data-open="false">
             <h3>
               <button type="button" class="faq-trigger" aria-expanded="false" aria-controls="faq-p4" id="faq-b4">
-                <span>Formas de pagamento?</span>
+                <span>Quais as formas de pagamento?</span>
                 <svg class="faq-chevron h-5 w-5 text-nude" aria-hidden="true"><use href="#i-chevron"></use></svg>
               </button>
             </h3>
@@ -1036,7 +1275,7 @@
           <div class="faq-item" data-open="false">
             <h3>
               <button type="button" class="faq-trigger" aria-expanded="false" aria-controls="faq-p5" id="faq-b5">
-                <span>Precisei remarcar?</span>
+                <span>Posso remarcar meu horário?</span>
                 <svg class="faq-chevron h-5 w-5 text-nude" aria-hidden="true"><use href="#i-chevron"></use></svg>
               </button>
             </h3>
@@ -1050,7 +1289,7 @@
           <div class="faq-item" data-open="false">
             <h3>
               <button type="button" class="faq-trigger" aria-expanded="false" aria-controls="faq-p6" id="faq-b6">
-                <span>Onde ficam?</span>
+                <span>Onde fica o salão?</span>
                 <svg class="faq-chevron h-5 w-5 text-nude" aria-hidden="true"><use href="#i-chevron"></use></svg>
               </button>
             </h3>

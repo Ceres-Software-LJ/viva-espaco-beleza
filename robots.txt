@@ -1,4 +1,42 @@
+# Viva Espaço de Beleza — https://viva-espaco-beleza.vercel.app
+
 User-agent: *
+Allow: /
+
+# ---------------------------------------------------------------
+# Crawlers de IA generativa liberados de propósito.
+# A meta é ser CITADO quando alguém perguntar a um assistente
+# "salão de beleza em Campo Grande" — para isso o conteúdo
+# precisa ser indexável por eles.
+# ---------------------------------------------------------------
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bingbot
 Allow: /
 
 Sitemap: https://viva-espaco-beleza.vercel.app/sitemap.xml
