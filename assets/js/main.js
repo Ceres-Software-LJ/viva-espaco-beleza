@@ -1,14 +1,16 @@
 /* ============================================================
    VIVA ESPAÇO DE BELEZA — interações da landing page
    JavaScript puro, sem dependências.
-   Módulos: navbar, menu mobile, fade-in, FAQ, depoimentos, rodapé.
+   Módulos: navbar, menu, reveal, FAQ, esteira, vídeo, esmaltação,
+   entrada do hero, ondas de título, cortinas, cards, tilt e ripple.
    ============================================================ */
 (function () {
   'use strict';
 
   var REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---------- 1. Navbar: estado ao rolar ---------- */
+  /* ---------- 1. Navbar: encolhe ao rolar ---------- */
+  var SCROLL_LIMIAR = 80;   // px de rolagem antes de encolher
   function initHeader() {
     var header = document.getElementById('site-header');
     if (!header) return;
@@ -16,7 +18,7 @@
     var ticking = false;
 
     function update() {
-      header.classList.toggle('is-scrolled', window.scrollY > 8);
+      header.classList.toggle('is-scrolled', window.scrollY > SCROLL_LIMIAR);
       ticking = false;
     }
 
@@ -350,6 +352,190 @@
     if (slot) slot.textContent = String(new Date().getFullYear());
   }
 
+
+  /* ============================================================
+     8. SISTEMA DE ANIMAÇÃO E MICRO-INTERAÇÕES
+     Módulos independentes. Todos saem de cena com movimento
+     reduzido; nenhum depende de biblioteca.
+     ============================================================ */
+
+  // Observador reutilizável: marca .is-in uma vez e para de observar.
+  function observar(elementos, aoEntrar, opcoes) {
+    var lista = Array.prototype.slice.call(elementos);
+    if (!lista.length) return;
+
+    if (!('IntersectionObserver' in window) || REDUCED_MOTION) {
+      lista.forEach(function (el) { aoEntrar(el, 0); });
+      return;
+    }
+
+    var vistos = 0;
+    var obs = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        aoEntrar(e.target, vistos++);
+        obs.unobserve(e.target);
+      });
+    }, opcoes || { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+
+    lista.forEach(function (el) { obs.observe(el); });
+  }
+
+  /* ---------- 8.1 Entrada escalonada do hero (fase 2) ----------
+     Os atrasos vivem no CSS; aqui só disparamos a classe.
+     ------------------------------------------------------------ */
+  function initHeroEntrada() {
+    var hero = document.getElementById('inicio');
+    if (!hero) return;
+    // Espera um frame para o navegador registrar o estado inicial
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () { hero.classList.add('hero--loaded'); });
+    });
+  }
+
+  /* ---------- 8.2 Títulos de seção: onda por palavra ----------
+     Envolve cada palavra num <span class="w" style="--wi:N">.
+     Percorre só nós de texto, para não destruir <br> ou <span>
+     que já existam dentro do título.
+     ------------------------------------------------------------ */
+  var PALAVRA_MS = 70;
+
+  function initTitulosOnda() {
+    var titulos = document.querySelectorAll('.section-title');
+    if (!titulos.length) return;
+
+    titulos.forEach(function (titulo) {
+      if (!REDUCED_MOTION) dividirPalavras(titulo);
+    });
+
+    observar(titulos, function (el) { el.classList.add('is-in'); });
+  }
+
+  function dividirPalavras(raiz) {
+    var indice = { n: 0 };
+    percorrer(raiz, indice);
+  }
+
+  function percorrer(no, indice) {
+    Array.prototype.slice.call(no.childNodes).forEach(function (filho) {
+      if (filho.nodeType === 3) {                       // nó de texto
+        var partes = filho.nodeValue.split(/(\s+)/);
+        if (!filho.nodeValue.trim()) return;
+        var frag = document.createDocumentFragment();
+        partes.forEach(function (parte) {
+          if (!parte.trim()) { frag.appendChild(document.createTextNode(parte)); return; }
+          var span = document.createElement('span');
+          span.className = 'w';
+          span.style.setProperty('--wi', indice.n++);
+          span.textContent = parte;
+          frag.appendChild(span);
+        });
+        no.replaceChild(frag, filho);
+      } else if (filho.nodeType === 1 && filho.tagName !== 'BR') {
+        percorrer(filho, indice);                        // preserva <span class="text-nude">
+      }
+    });
+  }
+
+  /* ---------- 8.3 Eyebrows e subtítulos ---------- */
+  function initTextosSecao() {
+    observar(
+      document.querySelectorAll('.eyebrow:not(.hero-anim), .section-sub'),
+      function (el) { el.classList.add('is-in'); }
+    );
+  }
+
+  /* ---------- 8.4 Cortinas de revelação ----------
+     .mask-reveal (sai pela direita) e .curtain-up (sobe).
+     Utilitários genéricos: funcionam em qualquer elemento.
+     --------------------------------------------------- */
+  function initCortinas() {
+    observar(
+      document.querySelectorAll('.mask-reveal, .curtain-up'),
+      function (el) { el.classList.add('mask-off'); },
+      { threshold: 0.25 }
+    );
+  }
+
+  /* ---------- 8.5 Cards: fade-up com escala, escalonado ---------- */
+  var CARD_STAGGER_MS = 80;
+  var CARD_STAGGER_MAX = 4;
+
+  function initCards() {
+    observar(document.querySelectorAll('[data-card]'), function (el) {
+      el.style.transitionDelay = ordemNoGrupo(el) * CARD_STAGGER_MS + 'ms';
+      el.classList.add('is-in');
+    });
+  }
+
+  // O escalonamento é por grade, não global: cada grupo recomeça do zero.
+  // Com um contador global, a última seção da página herdaria sempre o
+  // atraso máximo e o efeito de cascata desapareceria.
+  function ordemNoGrupo(el) {
+    var irmaos = Array.prototype.slice.call(
+      el.parentElement.querySelectorAll(':scope > [data-card]')
+    );
+    var i = irmaos.indexOf(el);
+    return Math.min(i < 0 ? 0 : i, CARD_STAGGER_MAX);
+  }
+
+  /* ---------- 8.6 Tilt 3D no hover ----------
+     Só em ponteiro fino (mouse). Escreve em variáveis CSS e deixa
+     a composição para o CSS — nenhuma leitura de layout no mousemove.
+     ------------------------------------------------------------- */
+  var TILT_MAX = 6; // graus
+
+  function initTilt() {
+    if (REDUCED_MOTION) return;
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+    document.querySelectorAll('.tilt').forEach(function (card) {
+      var caixa = null;
+
+      card.addEventListener('pointerenter', function () {
+        caixa = card.getBoundingClientRect();   // mede uma vez, na entrada
+        card.classList.add('is-tilting');
+      });
+
+      card.addEventListener('pointermove', function (e) {
+        if (!caixa) return;
+        var x = (e.clientX - caixa.left) / caixa.width - 0.5;
+        var y = (e.clientY - caixa.top) / caixa.height - 0.5;
+        card.style.setProperty('--ry', (x * TILT_MAX * 2).toFixed(2) + 'deg');
+        card.style.setProperty('--rx', (-y * TILT_MAX * 2).toFixed(2) + 'deg');
+      });
+
+      card.addEventListener('pointerleave', function () {
+        card.classList.remove('is-tilting');
+        card.style.setProperty('--rx', '0deg');
+        card.style.setProperty('--ry', '0deg');
+        caixa = null;
+      });
+    });
+  }
+
+  /* ---------- 8.7 Ripple no clique ---------- */
+  function initRipple() {
+    if (REDUCED_MOTION) return;
+
+    document.addEventListener('pointerdown', function (e) {
+      var alvo = e.target.closest('[data-ripple]');
+      if (!alvo) return;
+
+      var caixa = alvo.getBoundingClientRect();
+      var tamanho = Math.max(caixa.width, caixa.height);
+
+      var onda = document.createElement('span');
+      onda.className = 'ripple';
+      onda.style.width = onda.style.height = tamanho + 'px';
+      onda.style.left = (e.clientX - caixa.left - tamanho / 2) + 'px';
+      onda.style.top = (e.clientY - caixa.top - tamanho / 2) + 'px';
+
+      alvo.appendChild(onda);
+      onda.addEventListener('animationend', function () { onda.remove(); });
+    }, { passive: true });
+  }
+
   /* ---------- Inicialização ---------- */
   function init() {
     initHeader();
@@ -359,6 +545,13 @@
     initMarquee();
     initHeroVideo();
     initEsmalte();
+    initHeroEntrada();
+    initTitulosOnda();
+    initTextosSecao();
+    initCortinas();
+    initCards();
+    initTilt();
+    initRipple();
     initYear();
   }
 

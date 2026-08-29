@@ -704,3 +704,198 @@ section[id] {
     transform: none !important;
   }
 }
+
+/* ============================================================
+   13. SISTEMA DE ANIMAÇÃO E MICRO-INTERAÇÕES
+   Tudo em transform/opacity (compostas na GPU, sem layout).
+   Nada anima sem a classe .js no <html>, para a página seguir
+   legível se o JavaScript falhar.
+   O bloco de movimento reduzido no fim do arquivo desliga tudo.
+   ============================================================ */
+
+/* ---------- 13.1 Entrada escalonada do hero ----------
+   Disparada pela classe .hero--loaded, adicionada no DOMContentLoaded.
+   O vídeo de fundo e o véu ficam de fora: têm lógica própria.
+   ------------------------------------------------------ */
+.js .hero-anim {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 0.61, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.js .hero-anim--title {
+  transform: translateY(26px) scale(0.985);
+}
+
+.js .hero--loaded .hero-anim {
+  opacity: 1;
+  transform: none;
+}
+.js .hero--loaded .hero-anim--eyebrow  { transition-delay: 0.05s; }
+.js .hero--loaded .hero-anim--title    { transition-delay: 0.20s; }
+.js .hero--loaded .hero-anim--sub      { transition-delay: 0.42s; }
+.js .hero--loaded .hero-anim--cta {
+  transition-delay: 0.60s;
+  transition-timing-function: cubic-bezier(0.34, 1.2, 0.64, 1); /* leve bounce */
+}
+.js .hero--loaded .hero-anim--stats    { transition-delay: 0.78s; }
+
+/* ---------- 13.2 Títulos de seção: onda por palavra ----------
+   O JS envolve cada palavra em <span class="w" style="--wi:N">.
+   ------------------------------------------------------------- */
+.section-title .w {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.45em);
+  transition:
+    opacity 0.5s ease,
+    transform 0.55s cubic-bezier(0.22, 0.61, 0.36, 1);
+  transition-delay: calc(var(--wi, 0) * 70ms);
+}
+.section-title.is-in .w {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- 13.3 Eyebrows e subtítulos de seção ---------- */
+.js .eyebrow:not(.hero-anim),
+.js .section-sub {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.js .eyebrow.is-in,
+.js .section-sub.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- 13.4 Revelação por cortina ----------
+   .mask-reveal  → cortina sai para a DIREITA (mídia, mockups)
+   .curtain-up   → cortina sobe (fotos de pessoas, retratos)
+   Utilitários genéricos: basta pôr a classe em qualquer wrapper.
+   -------------------------------------------------- */
+.mask-reveal,
+.curtain-up {
+  position: relative;
+  overflow: hidden;
+}
+.mask-reveal::after,
+.curtain-up::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: var(--cream);
+  pointer-events: none;
+  transition: transform 0.9s cubic-bezier(0.76, 0, 0.24, 1);
+}
+.mask-reveal.mask-off::after  { transform: translateX(101%); }
+.curtain-up.mask-off::after   { transform: translateY(-101%); }
+
+/* Sobre fundo verde a cortina precisa acompanhar */
+.bg-viva .mask-reveal::after,
+.bg-viva .curtain-up::after { background: var(--viva); }
+
+/* ---------- 13.5 Tilt 3D no hover ----------
+   O JS grava --rx/--ry; o CSS só compõe. Sem transição durante o
+   movimento (a suavidade vem do próprio mousemove) e com transição
+   na saída, para o card voltar macio.
+   ------------------------------------------------- */
+@media (hover: hover) and (pointer: fine) {
+  .tilt {
+    transform: perspective(700px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+    transition: transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1), box-shadow 0.4s ease;
+    will-change: transform;
+  }
+  .tilt.is-tilting {
+    transition: box-shadow 0.4s ease;
+    box-shadow: 0 26px 50px -28px rgba(44, 84, 80, 0.55);
+  }
+}
+
+/* ---------- 13.6 Pulso de brilho no botão primário ----------
+   Só o WhatsApp, que é o botão de conversão. Pausa no hover para
+   não competir com o feedback do próprio hover.
+   -------------------------------------------------------- */
+@keyframes wa-glow {
+  0%, 100% { box-shadow: 0 10px 24px -14px rgba(37, 211, 102, 0.9); }
+  50% {
+    box-shadow:
+      0 12px 30px -12px rgba(37, 211, 102, 1),
+      0 0 0 6px rgba(37, 211, 102, 0.12);
+  }
+}
+.btn-wa {
+  animation: wa-glow 4s ease-in-out infinite;
+}
+.btn-wa:hover,
+.btn-wa:focus-visible {
+  animation-play-state: paused;
+}
+
+/* ---------- 13.7 Ripple no clique ---------- */
+[data-ripple] {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.ripple {
+  position: absolute;
+  z-index: 0;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.28;
+  transform: scale(0);
+  pointer-events: none;
+  animation: ripple-out 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+@keyframes ripple-out {
+  to { transform: scale(2.6); opacity: 0; }
+}
+
+/* ---------- 13.8 Navbar que encolhe ---------- */
+.header-inner {
+  transition: padding 0.3s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+#site-header.is-scrolled .header-inner {
+  padding-top: 9px;
+  padding-bottom: 9px;
+}
+#site-header.is-scrolled {
+  box-shadow: 0 6px 24px -16px rgba(44, 84, 80, 0.45);
+}
+
+/* ---------- 13.9 Cards: fade-up com escala, escalonado ---------- */
+.js [data-card] {
+  opacity: 0;
+  transform: translateY(20px) scale(0.97);
+  transition:
+    opacity 0.6s ease,
+    transform 0.65s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.js [data-card].is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- 13.10 Movimento reduzido ----------
+   Complementa o bloco geral: entrega o estado final de tudo.
+   ------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .js .hero-anim,
+  .js .eyebrow,
+  .js .section-sub,
+  .js [data-card],
+  .section-title .w {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .mask-reveal::after,
+  .curtain-up::after { display: none; }
+  .btn-wa { animation: none; }
+  .tilt { transform: none !important; }
+  .ripple { display: none; }
+}
